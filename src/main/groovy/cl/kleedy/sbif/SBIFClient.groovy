@@ -79,33 +79,6 @@ class SBIFClient {
     }
 
     /***
-     * Permite obtener un listado con el valor del Dólar EE.UU. para los años siguientes al año que se indique.
-     * @return List < Dolar >
-     */
-    def List<Dolar> getDolaresPosteriores(int year) {
-        return getDolares(['year': year], '/dolar/posteriores')
-    }
-
-    /***
-     * Permite obtener un listado con el valor del Dólar EE.UU. para cada día del mes del año que se indique.
-     * @param year
-     * @param month
-     * @return List < Dolar >
-     */
-    def List<Dolar> getDolaresPosteriores(int year, int month) {
-        Map params = ['year': year, 'month': month]
-        return getDolares(params, '/dolar/posteriores')
-    }
-
-    /***
-     * Permite obtener un listado con el valor del Dólar EE.UU. para los años anteriores al año que se indique.
-     * @return List < Dolar >
-     */
-    def List<Dolar> getDolaresAnteriores(int year) {
-        return getDolares(['year': year], '/dolar/anteriores')
-    }
-
-    /***
      * Permite obtener un listado con el valor del Dólar EE.UU. para cada día del mes del año que se indique.
      * @param year
      * @param month
@@ -114,17 +87,6 @@ class SBIFClient {
     def List<Dolar> getDolares(int year, int month) {
         Map params = ['year': year, 'month': month]
         return getDolares(params)
-    }
-
-    /***
-     * Permite obtener un listado con el valor del Dólar EE.UU. para mes y año que se indique.
-     * @param year
-     * @param month
-     * @return List < Dolar >
-     */
-    def List<Dolar> getDolaresAnteriores(int year, int month) {
-        Map params = ['year': year, 'month': month]
-        return getDolares(params, 'dolar/anteriores')
     }
 
     /***
@@ -140,6 +102,44 @@ class SBIFClient {
     }
 
     /***
+     * Permite obtener un listado con el valor del Dólar EE.UU. para los años siguientes al año que se indique.
+     * @return List < Dolar >
+     */
+    def List<Dolar> getDolaresPosteriores(int year) {
+        return getDolares(['year': year], '/posteriores')
+    }
+
+    /***
+     * Permite obtener un listado con el valor del Dólar EE.UU. para cada día del mes del año que se indique.
+     * @param year
+     * @param month
+     * @return List < Dolar >
+     */
+    def List<Dolar> getDolaresPosteriores(int year, int month) {
+        Map params = ['year': year, 'month': month]
+        return getDolares(params, '/posteriores')
+    }
+
+    /***
+     * Permite obtener un listado con el valor del Dólar EE.UU. para los años anteriores al año que se indique.
+     * @return List < Dolar >
+     */
+    def List<Dolar> getDolaresAnteriores(int year) {
+        return getDolares(['year': year], '/anteriores')
+    }
+
+    /***
+     * Permite obtener un listado con el valor del Dólar EE.UU. para mes y año que se indique.
+     * @param year
+     * @param month
+     * @return List < Dolar >
+     */
+    def List<Dolar> getDolaresAnteriores(int year, int month) {
+        Map params = ['year': year, 'month': month]
+        return getDolares(params, '/anteriores')
+    }
+
+    /***
      * Permite obtener un listado del Dólar EE.UU. para cada uno de los días
      * incluidos dentro de los años que se indiquen en los parámetros.
      * @param year
@@ -148,28 +148,37 @@ class SBIFClient {
      */
     def List<Dolar> getDolaresPeriodo(int year, int year2) {
         Map params = ['year': year, 'year2': year2]
-        return getDolares(params, 'dolar/periodo')
+        return getDolares(params, '/periodo')
 
     }
 
     /***
-     * Permite obtener un listado con el valor del Dólar EE.UU. para una fecha específica.
+     * Permite obtener un listado con el valor del Dólar EE.UU segun parametros y path
      * @param params
      * @return List < Dolar >  si no hay argumetos, retorna el valor del dolar al dia de hoy.
      */
-    def List<Dolar> getDolares(Map params = [:], String path = '/dolar') {
-        return buildURL(params, path)
+    def List<Dolar> getDolares(Map params = [:], String path = '') {
+        String url = buildURL(params, '/dolar' + path)
+        return getDollars(url)
     }
 
     /****
-     * Construte una url request segun paramtros y path
+     * Construte una url request segun parametros y path
      * @param params
      * @param path ruta
+     * @return url al recurso api
+     */
+    private String buildURL(Map params, String path) {
+        return path + buildDate(params) + "?apikey=${apikey}"
+    }
+
+    /****
+     * Llama al recurso dolar,parseando una lista en formato json
+     * @param url
      * @return List < Dolar >
      */
-    private List<Dolar> buildURL(Map params, String path) {
-        def response = call(path + buildDate(params) + "?apikey=${apikey}")
-        def dolares = response.json.Dolares
+    private List<Dolar> getDollars(String url) {
+        def dolares = call(url).json.Dolares
         def list = []
         dolares.each() { data ->
             list << new Dolar(fecha: Date.parse('yyyy-MM-dd', data.Fecha),
