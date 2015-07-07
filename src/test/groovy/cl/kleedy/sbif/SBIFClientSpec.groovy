@@ -119,4 +119,14 @@ class SBIFClientSpec extends Specification {
     }
 
 
+    void "should retrieve TMC list from 2015"() {
+        when:
+        def tmcs = client.getTMCByYear(2015)
+
+        then:
+        tmcs.size() > 0
+
+    }
+
+
 }
