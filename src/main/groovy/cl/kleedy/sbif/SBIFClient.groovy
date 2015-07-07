@@ -19,7 +19,7 @@
  */
 package cl.kleedy.sbif
 
-import cl.kleedy.sbif.cl.kleedy.sbif.dolar.Dolar
+import cl.kleedy.sbif.cl.kleedy.sbif.indicadores.Dolar
 import wslite.http.HTTPClientException
 import wslite.rest.RESTClient
 import wslite.rest.Response
@@ -79,11 +79,30 @@ class SBIFClient {
     }
 
     /***
-     * Permite obtener un listado con el valor del Dólar EE.UU posteriores a una año especifico.
+     * Permite obtener un listado con el valor del Dólar EE.UU. para los años siguientes al año que se indique.
      * @return List < Dolar >
      */
     def List<Dolar> getDolaresPosteriores(int year) {
         return getDolares(['year': year], '/dolar/posteriores')
+    }
+
+    /***
+     * Permite obtener un listado con el valor del Dólar EE.UU. para cada día del mes del año que se indique.
+     * @param year
+     * @param month
+     * @return List < Dolar >
+     */
+    def List<Dolar> getDolaresPosteriores(int year, int month) {
+        Map params = ['year': year, 'month': month]
+        return getDolares(params, '/dolar/posteriores')
+    }
+
+    /***
+     * Permite obtener un listado con el valor del Dólar EE.UU. para los años anteriores al año que se indique.
+     * @return List < Dolar >
+     */
+    def List<Dolar> getDolaresAnteriores(int year) {
+        return getDolares(['year': year], '/dolar/anteriores')
     }
 
     /***
@@ -98,6 +117,17 @@ class SBIFClient {
     }
 
     /***
+     * Permite obtener un listado con el valor del Dólar EE.UU. para mes y año que se indique.
+     * @param year
+     * @param month
+     * @return List < Dolar >
+     */
+    def List<Dolar> getDolaresAnteriores(int year, int month) {
+        Map params = ['year': year, 'month': month]
+        return getDolares(params, 'dolar/anteriores')
+    }
+
+    /***
      * Permite obtener un listado con el valor del Dólar EE.UU. para dia mes y año que se indique.
      * @param year
      * @param month
@@ -107,6 +137,19 @@ class SBIFClient {
     def Dolar getDolares(int year, int month, int day) {
         Map params = ['year': year, 'month': month, 'day': day]
         return getDolares(params).first()
+    }
+
+    /***
+     * Permite obtener un listado del Dólar EE.UU. para cada uno de los días
+     * incluidos dentro de los años que se indiquen en los parámetros.
+     * @param year
+     * @param year2
+     * @return
+     */
+    def List<Dolar> getDolaresPeriodo(int year, int year2) {
+        Map params = ['year': year, 'year2': year2]
+        return getDolares(params, 'dolar/periodo')
+
     }
 
     /***
@@ -130,7 +173,7 @@ class SBIFClient {
         def list = []
         dolares.each() { data ->
             list << new Dolar(fecha: Date.parse('yyyy-MM-dd', data.Fecha),
-                    valor: Double.parseDouble(data.Valor.replaceAll(",", '.')))
+                    valor: (data.Valor != null && data.Valor.trim().length() > 0) ? Double.parseDouble(data.Valor.trim().replaceAll(",", '.')) : 0)
         }
         return list
     }
@@ -157,7 +200,7 @@ class SBIFClient {
      */
     private String buildDate(Map params = [:], boolean includeDay = true) {
         def url = ''
-        def day = '', month = '', year = ''
+        def day = '', month = '', year = '', year2 = ''
         def instance = Calendar.getInstance();
 
         if (params.size() == 0)
@@ -180,7 +223,11 @@ class SBIFClient {
         else if (month)
             year = "/${instance.get(Calendar.YEAR)}"
 
-        return year << month << day
+        if (params.year2)
+            year2 = "/${params.year2}"
+
+
+        return year << year2 << month << day
     }
 
 

@@ -17,7 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-package cl.kleedy.sbif.cl.kleedy.sbif.dolar
+package cl.kleedy.sbif.cl.kleedy.sbif.indicadores
 
 /**
  * Created by josebovet on 7/1/15.

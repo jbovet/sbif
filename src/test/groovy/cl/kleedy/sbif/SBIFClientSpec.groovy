@@ -28,7 +28,7 @@ class SBIFClientSpec extends Specification {
 
     SBIFClient client;
 
-    def apiKey = "NEW_API_KEY"
+    def apiKey = ""
 
     void setup() {
         client = SBIFClient.instance(apiKey)
@@ -73,7 +73,7 @@ class SBIFClientSpec extends Specification {
     }
 
 
-    void "should retrieve dolar list from year later than year 2014"() {
+    void "should retrieve dolar list from later year than 2014"() {
         when:
         def dolares = client.getDolaresPosteriores(2014)
 
@@ -81,5 +81,42 @@ class SBIFClientSpec extends Specification {
         dolares.size() > 0
 
     }
+
+    void "should retrieve dolar list from later year than  2014 and month 1"() {
+        when:
+        def dolares = client.getDolaresPosteriores(2014, 1)
+
+        then:
+        dolares.size() > 0
+
+    }
+
+    void "should retrieve dolar list from previous year 2014"() {
+        when:
+        def dolares = client.getDolaresAnteriores(2014)
+
+        then:
+        dolares.size() > 0
+
+    }
+
+    void "should retrieve dolar list from previous year than  2015 and month 1"() {
+        when:
+        def dolares = client.getDolaresPosteriores(2015, 1)
+
+        then:
+        dolares.size() > 0
+
+    }
+
+    void "should retrieve dolar list from 2 year period like  2010-2013"() {
+        when:
+        def dolares = client.getDolaresPeriodo(2010, 2013)
+
+        then:
+        dolares.size() > 0
+
+    }
+
 
 }
