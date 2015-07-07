@@ -79,6 +79,14 @@ class SBIFClient {
     }
 
     /***
+     * Permite obtener un listado con el valor del Dólar EE.UU posteriores a una año especifico.
+     * @return List < Dolar >
+     */
+    def List<Dolar> getDolaresPosteriores(int year) {
+        return getDolares(['year': year], '/dolar/posteriores')
+    }
+
+    /***
      * Permite obtener un listado con el valor del Dólar EE.UU. para cada día del mes del año que se indique.
      * @param year
      * @param month
@@ -106,8 +114,18 @@ class SBIFClient {
      * @param params
      * @return List < Dolar >  si no hay argumetos, retorna el valor del dolar al dia de hoy.
      */
-    def List<Dolar> getDolares(Map params = [:]) {
-        def response = call("/dolar" + buildDate(params) + "?apikey=${apikey}")
+    def List<Dolar> getDolares(Map params = [:], String path = '/dolar') {
+        return buildURL(params, path)
+    }
+
+    /****
+     * Construte una url request segun paramtros y path
+     * @param params
+     * @param path ruta
+     * @return List < Dolar >
+     */
+    private List<Dolar> buildURL(Map params, String path) {
+        def response = call(path + buildDate(params) + "?apikey=${apikey}")
         def dolares = response.json.Dolares
         def list = []
         dolares.each() { data ->

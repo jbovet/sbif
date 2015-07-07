@@ -41,7 +41,7 @@ class SBIFClientSpec extends Specification {
 
         then:
         dolar.fecha != null
-        dolar.valor >= 0
+        dolar.valor >= 600
     }
 
     void "should retrieve dolar list from 2014"() {
@@ -69,6 +69,16 @@ class SBIFClientSpec extends Specification {
         then:
         dolar.fecha != null
         dolar.valor == 639.04
+
+    }
+
+
+    void "should retrieve dolar list from year later than year 2014"() {
+        when:
+        def dolares = client.getDolaresPosteriores(2014)
+
+        then:
+        dolares.size() > 0
 
     }
 
