@@ -205,7 +205,7 @@ class SBIFClient {
     /***
      * Permite obtener un listado con el valor de todos los tipos de TMC para el año solicitado
      * @param year
-     * @return List<TMC>
+     * @return List < TMC >
      */
     def List<TMC> getTMCByYear(int year) {
         Map params = ['year': year]
@@ -216,10 +216,10 @@ class SBIFClient {
      * Permite obtener un listado con el valor de todos los tipos de TMC para el año  y mes solicitado
      * @param year
      * @param month
-     * @return List<TMC>
+     * @return List < TMC >
      */
     def List<TMC> getTMCByYearAndMonth(int year, int month) {
-        Map params = ['year': year, 'month':month]
+        Map params = ['year': year, 'month': month]
         return getResource(params, 'tmc', 'getTCM')
     }
 
@@ -227,33 +227,33 @@ class SBIFClient {
      * Permite obtener un listado con el valor de todos los tipos de TMC anteriores para el año  y mes solicitado
      * @param year
      * @param month
-     * @return List<TMC>
+     * @return List < TMC >
      */
     def List<TMC> getTMCByPreviousYearAndMonth(int year, int month) {
-        Map params = ['year': year, 'month':month]
-        return getResource(params, 'tmc','/anteriores','getTCM')
+        Map params = ['year': year, 'month': month]
+        return getResource(params, 'tmc', '/anteriores', 'getTCM')
     }
 
     /***
      * Permite obtener un listado con el valor de todos los tipos de TMC posteriores para el año  y mes solicitado
      * @param year
      * @param month
-     * @return List<TMC>
+     * @return List < TMC >
      */
     def List<TMC> getTMCByLaterYearAndMonth(int year, int month) {
-        Map params = ['year': year, 'month':month]
-        return getResource(params, 'tmc','/posteriores','getTCM')
+        Map params = ['year': year, 'month': month]
+        return getResource(params, 'tmc', '/posteriores', 'getTCM')
     }
 
     /***
      * Permite obtener un listado con el valor de todos los tipos de TMC periodo  para los años y meses solicitados
      * @param year
      * @param month
-     * @return List<TMC>
+     * @return List < TMC >
      */
     def List<TMC> getTMCByPeriodYearAndMonth(int year, int month, int year2, int month2) {
-        Map params = ['year': year, 'month':month, 'year2':year2, 'month2':month2]
-        return getResource(params, 'tmc','/periodo','getTCM')
+        Map params = ['year': year, 'month': month, 'year2': year2, 'month2': month2]
+        return getResource(params, 'tmc', '/periodo', 'getTCM')
     }
 
     /***
@@ -318,7 +318,7 @@ class SBIFClient {
      */
     private String buildDate(Map params = [:], boolean includeDay = true) {
         def url = ''
-        def day = '', month = '', year = '', year2 = '', month2='', period =''
+        def day = '', month = '', year = '', year2 = '', month2 = '', period = ''
         def instance = Calendar.getInstance();
 
         if (params.size() == 0)

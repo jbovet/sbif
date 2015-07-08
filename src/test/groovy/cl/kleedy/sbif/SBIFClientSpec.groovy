@@ -126,37 +126,37 @@ class SBIFClientSpec extends Specification {
         tmcs.size() > 0
     }
 
-    void "should retrieve TMC list from 2015 and April" () {
+    void "should retrieve TMC list from 2015 and April"() {
         when:
         //TODO handle 404 error code
-        def tmcs = client.getTMCByYearAndMonth(2014,4)
+        def tmcs = client.getTMCByYearAndMonth(2014, 4)
 
         then:
         tmcs.size() > 0
     }
 
-    void "should retrieve TMC list previous from 2015 and April" () {
+    void "should retrieve TMC list previous from 2015 and April"() {
         when:
         //TODO handle 404 error code
-        def tmcs = client.getTMCByPreviousYearAndMonth(2014,4)
+        def tmcs = client.getTMCByPreviousYearAndMonth(2014, 4)
 
         then:
         tmcs.size() > 0
     }
 
-    void "should retrieve TMC list later than 2015 and April" () {
+    void "should retrieve TMC list later than 2015 and April"() {
         when:
         //TODO handle 404 error code
-        def tmcs = client.getTMCByLaterYearAndMonth(2014,4)
+        def tmcs = client.getTMCByLaterYearAndMonth(2014, 4)
 
         then:
         tmcs.size() > 0
     }
 
-    void "should retrieve TMC list by period year 1-2010 April 1-2011" () {
+    void "should retrieve TMC list by period year 1-2010 April 1-2011"() {
         when:
         //TODO handle 404 error code
-        def tmcs = client.getTMCByPeriodYearAndMonth(2010,1,2015,5)
+        def tmcs = client.getTMCByPeriodYearAndMonth(2010, 1, 2015, 5)
 
         then:
         tmcs.size() > 0
