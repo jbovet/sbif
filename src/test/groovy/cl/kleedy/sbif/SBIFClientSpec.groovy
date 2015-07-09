@@ -28,7 +28,7 @@ class SBIFClientSpec extends Specification {
 
     SBIFClient client;
 
-    def apiKey = ""
+    def apiKey = "0dd3d3e332a0210d79eec9aabdd2abff5fe62de4"
 
     void setup() {
         client = SBIFClient.instance(apiKey)
@@ -157,6 +157,7 @@ class SBIFClientSpec extends Specification {
         when:
         //TODO handle 404 error code
         def tmcs = client.getTMCByPeriodYearAndMonth(2010, 1, 2015, 5)
+        client.getDo
 
         then:
         tmcs.size() > 0
