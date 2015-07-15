@@ -33,14 +33,14 @@ interface DolarOperations {
     /***
      * Permite obtener un listado con el valor del Dólar EE.UU. para cada día del año que se indique.
      * @param year
-     * @return List < Dolar >
+     * @return List<Dolar>
      */
     def List<Dolar> getDolares(int year)
 
     /***
      * Permite obtener un listado con el valor del Dólar EE.UU. para el actual año
      * @param year
-     * @return List < Dolar >
+     * @return List<Dolar>
      */
     def List<Dolar> getDolares()
 
@@ -48,7 +48,7 @@ interface DolarOperations {
      * Permite obtener un listado con el valor del Dólar EE.UU. para cada día del mes del año que se indique.
      * @param year
      * @param month
-     * @return List < Dolar >
+     * @return List<Dolar>
      */
     def List<Dolar> getDolares(int year, int month)
 
@@ -57,13 +57,13 @@ interface DolarOperations {
      * @param year
      * @param month
      * @param day
-     * @return List < Dolar >
+     * @return List<Dolar>
      */
     def Dolar getDolares(int year, int month, int day)
 
     /***
      * Permite obtener un listado con el valor del Dólar EE.UU. para los años siguientes al año que se indique.
-     * @return List < Dolar >
+     * @return List<Dolar>
      */
     def List<Dolar> getDolaresPosteriores(int year)
 
@@ -71,13 +71,13 @@ interface DolarOperations {
      * Permite obtener un listado con el valor del Dólar EE.UU. para cada día del mes del año que se indique.
      * @param year
      * @param month
-     * @return List < Dolar >
+     * @return List<Dolar>
      */
     def List<Dolar> getDolaresPosteriores(int year, int month)
 
     /***
      * Permite obtener un listado con el valor del Dólar EE.UU. para los años anteriores al año que se indique.
-     * @return List < Dolar >
+     * @return List<Dolar>
      */
     def List<Dolar> getDolaresAnteriores(int year)
 
@@ -85,7 +85,7 @@ interface DolarOperations {
      * Permite obtener un listado con el valor del Dólar EE.UU. para mes y año que se indique.
      * @param year
      * @param month
-     * @return List < Dolar >
+     * @return List <Dolar>
      */
     def List<Dolar> getDolaresAnteriores(int year, int month)
 
@@ -94,7 +94,7 @@ interface DolarOperations {
      * incluidos dentro de los años que se indiquen en los parámetros.
      * @param year
      * @param year2
-     * @return
+     * @return List<Dolar>
      */
     def List<Dolar> getDolaresPeriodo(int year, int year2)
 

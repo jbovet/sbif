@@ -23,10 +23,12 @@
 package cl.kleedy.sbif.api.indicadores
 
 /**
- * Created by josebovet on 7/7/15.
+ * Indicadores Economicos
+ * Created by josebovet on 7/15/15.
  */
-class TMC extends Indicador {
+class Indicador {
+    Date fecha
+    Double valor
 
-    String titulo, subTitulo
-    int tipo
+
 }

@@ -1,7 +1,7 @@
 package cl.kleedy.sbif.api.impl
 
-import cl.kleedy.sbif.api.TMCOperations
 import cl.kleedy.sbif.api.BasicOperations
+import cl.kleedy.sbif.api.TMCOperations
 import cl.kleedy.sbif.api.indicadores.TMC
 import wslite.rest.RESTClient
 
@@ -16,32 +16,32 @@ class TMCOperationTemplate extends BasicOperations implements TMCOperations {
         super(restClient, apiKey)
     }
 
-
-    def List<TMC> getTMCByYear(int year) {
+    @Override
+    List<TMC> getTMCByYear(int year) {
         Map params = ['year': year]
         return getResource(params, 'tmc', 'getTCM')
     }
 
-
-    def List<TMC> getTMCByYearAndMonth(int year, int month) {
+    @Override
+    List<TMC> getTMCByYearAndMonth(int year, int month) {
         Map params = ['year': year, 'month': month]
         return getResource(params, 'tmc', 'getTCM')
     }
 
-
-    def List<TMC> getTMCByPreviousYearAndMonth(int year, int month) {
+    @Override
+    List<TMC> getTMCByPreviousYearAndMonth(int year, int month) {
         Map params = ['year': year, 'month': month]
         return getResource(params, 'tmc', '/anteriores', 'getTCM')
     }
 
-
-    def List<TMC> getTMCByLaterYearAndMonth(int year, int month) {
+    @Override
+    List<TMC> getTMCByLaterYearAndMonth(int year, int month) {
         Map params = ['year': year, 'month': month]
         return getResource(params, 'tmc', '/posteriores', 'getTCM')
     }
 
-
-    def List<TMC> getTMCByPeriodYearAndMonth(int year, int month, int year2, int month2) {
+    @Override
+    List<TMC> getTMCByPeriodYearAndMonth(int year, int month, int year2, int month2) {
         Map params = ['year': year, 'month': month, 'year2': year2, 'month2': month2]
         return getResource(params, 'tmc', '/periodo', 'getTCM')
     }
@@ -49,7 +49,7 @@ class TMCOperationTemplate extends BasicOperations implements TMCOperations {
     /***
      * Llama al recurso TMC,parseando la respuesta en formato json
      * @param url
-     * @return List < TMC >
+     * @return List <TMC>
      */
     private List<TMC> getTCM(String url) {
         def tcms = call(url).json.TMCs

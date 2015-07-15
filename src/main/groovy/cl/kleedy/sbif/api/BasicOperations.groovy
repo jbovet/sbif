@@ -66,7 +66,7 @@ class BasicOperations {
     }
 
     /****
-     * Construte una url request segun parametros y path
+     * Construye una url request segun parametros y path
      * @param params
      * @param path ruta
      * @return url al recurso api

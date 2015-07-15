@@ -22,9 +22,6 @@ package cl.kleedy.sbif.api.indicadores
 /**
  * Created by josebovet on 7/1/15.
  */
-class Dolar {
+class Dolar extends Indicador {
 
-    private Date fecha;
-
-    private Double valor;
 }
