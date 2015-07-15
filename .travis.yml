@@ -15,4 +15,4 @@ env:
 - TERM=dumb
 
 script:
-- ./gradlew test --debug 
+- ./gradlew test --debug
