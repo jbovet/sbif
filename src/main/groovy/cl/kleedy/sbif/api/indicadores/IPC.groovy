@@ -20,16 +20,12 @@
  *
  */
 
-package cl.kleedy.sbif.api
+package cl.kleedy.sbif.api.indicadores
+
 /**
- * Operaciones permitidas con SBIF
- * Created by josebovet on 7/14/15.
+ * Indice de Precios al Consumidor
+ * Created by josebovet on 7/15/15.
  */
-interface SBIF {
+class IPC extends Indicador {
 
-    DolarOperations dolarOperations();
-
-    TMCOperations tmcOperations();
-
-    IPCOperations ipcOperations();
 }

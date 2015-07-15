@@ -21,15 +21,27 @@
  */
 
 package cl.kleedy.sbif.api
+
 /**
- * Operaciones permitidas con SBIF
- * Created by josebovet on 7/14/15.
+ * Created by josebovet on 7/15/15.
  */
-interface SBIF {
+class IPCClientSpec extends SBIFClientSpec {
 
-    DolarOperations dolarOperations();
+    IPCOperations client
 
-    TMCOperations tmcOperations();
+    void setup() {
+        client = sbifTemplate.getIpcOperations()
+    }
 
-    IPCOperations ipcOperations();
+
+    void "should retrieve IPC from actual month"() {
+        when:
+        def ipc = client.getIPC()
+
+        then:
+        ipc.valor >= 0
+        ipc.fecha != null
+    }
+
+
 }
