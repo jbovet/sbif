@@ -32,4 +32,6 @@ interface SBIF {
     TMCOperations tmcOperations();
 
     IPCOperations ipcOperations();
+
+    UTMOperations utmOperations();
 }

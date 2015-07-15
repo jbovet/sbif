@@ -25,10 +25,11 @@ package cl.kleedy.sbif.api
 import cl.kleedy.sbif.api.impl.DolarOperationTemplate
 import cl.kleedy.sbif.api.impl.IPCOperationTemplate
 import cl.kleedy.sbif.api.impl.TMCOperationTemplate
+import cl.kleedy.sbif.api.impl.UTMOperationTemplate
 import wslite.rest.RESTClient
 
 /**
- * Template para version 3.0 de la api sbif.
+ * Template para version 3.0 de la api SBIF.
  * Created by josebovet on 7/14/15.
  * @version 3.0
  */
@@ -39,6 +40,8 @@ class SBIFTemplate implements SBIF {
     TMCOperations tmcOperations
 
     IPCOperations ipcOperations
+
+    UTMOperations utmOperations
 
     RESTClient restClient
 
@@ -75,6 +78,11 @@ class SBIFTemplate implements SBIF {
         return ipcOperations
     }
 
+    @Override
+    UTMOperations utmOperations() {
+        return utmOperations
+    }
+
     /***
      * inicializa las operaciones permitidas con SBIF
      */
@@ -82,6 +90,7 @@ class SBIFTemplate implements SBIF {
         dolarOperations = new DolarOperationTemplate(getRestClient(), getApiKey())
         tmcOperations = new TMCOperationTemplate(getRestClient(), getApiKey())
         ipcOperations = new IPCOperationTemplate(getRestClient(), getApiKey())
+        utmOperations = new UTMOperationTemplate(getRestClient(),getApiKey())
     }
 
     /***
