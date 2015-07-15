@@ -28,7 +28,7 @@ class SBIFClientSpec extends Specification {
 
     SBIFTemplate sbifTemplate;
 
-    def apiKey = "NEW_API_KEY"
+    def apiKey = "0dd3d3e332a0210d79eec9aabdd2abff5fe62de4"
 
     void setup() {
         sbifTemplate = new SBIFTemplate(apiKey);
