@@ -62,7 +62,6 @@ class TMCOperationTemplate extends BasicOperations implements TMCOperations {
             )
         }
         return list
-
     }
 
 }

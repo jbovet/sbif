@@ -22,9 +22,50 @@
 
 package cl.kleedy.sbif.api
 
+import cl.kleedy.sbif.api.indicadores.UTM
+
 /**
  * Operaciones con Unidad Tributaria Mensual
  * Created by josebovet on 7/15/15.
  */
 interface UTMOperations {
+
+    /***
+     * Permite obtener el valor de la UTM para el mes actual.
+     * @return
+     */
+    def UTM getUTM();
+
+    /***
+     * Permite obtener un listado con el valor de la UTM para
+     * cada mes del año que se indique.
+     * @param year
+     * @return
+     */
+    def List<UTM> getUTMByYear(int year);
+
+    /***
+     * Permite obtener un listado con el valor de la UTM para el mes y año que se indique
+     * @param year
+     * @param month
+     * @return
+     */
+    def List<UTM> getUTMByYearAndMonth(int year, int month);
+
+    /****
+     * Permite obtener un listado con el valor de la UTM de cada mes correspondiente
+     * a una fecha posterior a la que se indique.
+     * @param year
+     * @return
+     */
+    def List<UTM> getUTMLaterYear(int year);
+
+    /****
+     * Permite obtener un listado con el valor de la UTM de cada mes correspondiente a
+     * una fecha posterior al mes y año que se indique en los parámetros.
+     * @param year
+     * @param month
+     * @return
+     */
+    def List<UTM> getUTMLaterYearAndMonth(int year, int month);
 }

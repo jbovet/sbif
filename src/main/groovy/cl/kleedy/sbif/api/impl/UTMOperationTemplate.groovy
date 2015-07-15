@@ -24,6 +24,7 @@ package cl.kleedy.sbif.api.impl
 
 import cl.kleedy.sbif.api.BasicOperations
 import cl.kleedy.sbif.api.UTMOperations
+import cl.kleedy.sbif.api.indicadores.UTM
 import wslite.rest.RESTClient
 
 /**
@@ -36,4 +37,53 @@ class UTMOperationTemplate extends BasicOperations implements UTMOperations {
         super(restClient, apiKey)
     }
 
+    @Override
+    UTM getUTM() {
+        return getResource([:], 'utm', 'getUTMs').first()
+    }
+
+    @Override
+    List<UTM> getUTMByYear(int year) {
+        return getUTMByYearAndMonth(year,0)
+    }
+
+    @Override
+    List<UTM> getUTMByYearAndMonth(int year, int month) {
+        def params = ['year':year]
+        if(month) params.month = month
+        return getResource(params,'utm','getUTMs')
+    }
+
+    @Override
+    List<UTM> getUTMLaterYear(int year) {
+        return getUTMLaterYearAndMonth(year, 0)
+    }
+
+    @Override
+    List<UTM> getUTMLaterYearAndMonth(int year, int month) {
+        def params = ['year':year]
+        if(month) params.month = month
+        return getResource(params,'utm','/posteriores','getUTMs')
+    }
+
+    /***
+     * Llama al recurso UTM, parseando la respuesta en formato json
+     * @param url
+     * @return List <UTM>
+     */
+    private List<UTM> getUTMs(String url) {
+        def utmList = call(url).json.UTMs
+        def list = []
+        utmList.each() { data ->
+            def v = data.Valor.trim()
+            if(v.any{it == ','}) {
+                v = v.substring(0, v.indexOf(','))
+            }
+
+            v = (v != null && v.length() > 0) ? Double.parseDouble(v.replace(".", '')):0
+            list << new UTM(valor: v,fecha: Date.parse('yyyy-MM-dd', data.Fecha))
+        }
+        return list
+
+    }
 }
