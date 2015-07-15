@@ -20,13 +20,18 @@
  *
  */
 
-package cl.kleedy.sbif
+package cl.kleedy.sbif.api
 
 /**
  * Created by josebovet on 7/14/15.
  */
 class TMCClientSpec extends SBIFClientSpec {
 
+    def client
+
+    void setup() {
+        client = sbifTemplate.getTmcOperations()
+    }
 
     void "should retrieve TMC list from 2015"() {
         when:

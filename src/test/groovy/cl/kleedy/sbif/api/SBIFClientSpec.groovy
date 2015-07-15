@@ -17,7 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-package cl.kleedy.sbif
+package cl.kleedy.sbif.api
 
 import spock.lang.Specification
 
@@ -26,12 +26,12 @@ import spock.lang.Specification
  */
 class SBIFClientSpec extends Specification {
 
-    SBIFClient client;
+    SBIFTemplate sbifTemplate;
 
     def apiKey = "NEW_API_KEY"
 
     void setup() {
-        client = SBIFClient.instance(apiKey)
+        sbifTemplate = new SBIFTemplate(apiKey);
     }
 
 }

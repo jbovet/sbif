@@ -20,12 +20,19 @@
  *
  */
 
-package cl.kleedy.sbif
+package cl.kleedy.sbif.api
 
 /**
  * Created by josebovet on 7/14/15.
  */
 class DolarClientSpec extends SBIFClientSpec {
+
+    def client
+
+    void setup() {
+        client = sbifTemplate.getDolarOperations()
+    }
+
 
     void "should retrieve date and dolar price"() {
         when:

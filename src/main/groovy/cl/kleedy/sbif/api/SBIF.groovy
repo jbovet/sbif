@@ -20,24 +20,14 @@
  *
  */
 
-package cl.kleedy.sbif.cl.kleedy.sbif.instituciones
-
+package cl.kleedy.sbif.api
 /**
- * Created by josebovet on 7/8/15.
+ * Operaciones permitidas con SBIF
+ * Created by josebovet on 7/14/15.
  */
-class Perfil {
-    String contactoPublico
-    String nombre
-    String telefonoPublico
-    String codigoSWIFT
-    int empleados
-    String telefono
-    String rut
-    String direccionPrincipal
-    int cajeros
-    String direccionPublico
-    int sucursales
-    Date fechaPublicacion
-    String direccionWeb
+interface SBIF {
 
+    DolarOperations dolarOperations();
+
+    TMCOperations tmcOperations();
 }

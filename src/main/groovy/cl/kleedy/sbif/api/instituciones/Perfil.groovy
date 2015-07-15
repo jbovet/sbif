@@ -20,15 +20,24 @@
  *
  */
 
-package cl.kleedy.sbif.cl.kleedy.sbif.indicadores
+package cl.kleedy.sbif.api.instituciones
 
 /**
- * Created by josebovet on 7/7/15.
+ * Created by josebovet on 7/8/15.
  */
-class TMC {
+class Perfil {
+    String contactoPublico
+    String nombre
+    String telefonoPublico
+    String codigoSWIFT
+    int empleados
+    String telefono
+    String rut
+    String direccionPrincipal
+    int cajeros
+    String direccionPublico
+    int sucursales
+    Date fechaPublicacion
+    String direccionWeb
 
-    String titulo, subTitulo
-    Double valor
-    Date fecha
-    int tipo
 }

@@ -20,7 +20,7 @@
  *
  */
 
-package cl.kleedy.sbif.cl.kleedy.sbif.reportes
+package cl.kleedy.sbif.api.reportes
 
 /**
  * Created by josebovet on 7/8/15.

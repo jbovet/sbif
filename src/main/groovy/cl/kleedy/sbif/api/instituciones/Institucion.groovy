@@ -20,7 +20,7 @@
  *
  */
 
-package cl.kleedy.sbif.cl.kleedy.sbif.instituciones
+package cl.kleedy.sbif.api.instituciones
 
 /**
  * Created by josebovet on 7/8/15.

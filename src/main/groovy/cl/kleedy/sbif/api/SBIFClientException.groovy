@@ -17,14 +17,30 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-package cl.kleedy.sbif.cl.kleedy.sbif.indicadores
+
+package cl.kleedy.sbif.api
 
 /**
  * Created by josebovet on 7/1/15.
  */
-class Dolar {
+class SBIFClientException extends Exception {
 
-    private Date fecha;
+    SBIFClientException() {
+    }
 
-    private Double valor;
+    SBIFClientException(String var1) {
+        super(var1)
+    }
+
+    SBIFClientException(String var1, Throwable var2) {
+        super(var1, var2)
+    }
+
+    SBIFClientException(Throwable var1) {
+        super(var1)
+    }
+
+    SBIFClientException(String var1, Throwable var2, boolean var3, boolean var4) {
+        super(var1, var2, var3, var4)
+    }
 }
