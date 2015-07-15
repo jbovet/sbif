@@ -39,43 +39,46 @@ class IPCOperationTemplate extends BasicOperations implements IPCOperations {
 
     @Override
     IPC getIPC() {
-        def instance = Calendar.getInstance();
         return getResource([:], 'ipc', 'getIPCS').first()
     }
 
     @Override
     List<IPC> getIPCByYear(int year) {
-        return null
+        return getResource(['year':year],'ipc','getIPCS')
     }
 
     @Override
     List<IPC> getIPCLaterYear(int year) {
-        return null
+        return getResource(['year':year],'ipc','/posteriores' ,'getIPCS')
     }
 
     @Override
     List<IPC> getIPCByLaterYearAndMonth(int year, int month) {
-        return null
+        return getResource(['year':year, 'month':month],'ipc','/posteriores' ,'getIPCS')
     }
 
     @Override
     List<IPC> getIPCByPreviousYear(int year) {
-        return null
+        return getIPCByPreviousYearAndMonth(year,0)
     }
 
     @Override
     List<IPC> getIPCByPreviousYearAndMonth(int year, int month) {
-        return null
+        def params = ['year':year]
+        if(month) params.month = month
+        return getResource(params,'ipc','/anteriores' ,'getIPCS')
     }
 
     @Override
     List<IPC> getIPCByPeriodYearAndMonth(int year, int month, int year2, int month2) {
-        return null
+        Map params = ['year': year, 'month': month, 'year2': year2, 'month2': month2]
+        return getResource(params, 'ipc', '/periodo', 'getIPCS')
     }
 
     @Override
     List<IPC> getIPCPeriodos(int year, int year2) {
-        return null
+        Map params = ['year': year,'year2': year2]
+        return getResource(params, 'ipc', '/periodo', 'getIPCS')
     }
 
     /***

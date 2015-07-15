@@ -33,7 +33,6 @@ class IPCClientSpec extends SBIFClientSpec {
         client = sbifTemplate.getIpcOperations()
     }
 
-
     void "should retrieve IPC from actual month"() {
         when:
         def ipc = client.getIPC()
@@ -41,6 +40,62 @@ class IPCClientSpec extends SBIFClientSpec {
         then:
         ipc.valor >= 0
         ipc.fecha != null
+    }
+
+    void "should retrieve ipc list from 2014"() {
+        when:
+        def ipc = client.getIPCByYear(2014)
+
+        then:
+        ipc.size() == 12
+    }
+
+    void "should retrieve ipc list from 2015"() {
+        when:
+        def ipc = client.getIPCLaterYear(2014)
+
+        then:
+        ipc.size() > 0
+    }
+
+    void "should retrieve ipc for 6/2014"() {
+        when:
+        def ipc = client.getIPCByLaterYearAndMonth(2014, 6)
+
+        then:
+        ipc.size() > 0
+    }
+
+    void "should retrieve ipc previous 2015"() {
+        when:
+        def ipc = client.getIPCByPreviousYear(2015)
+
+        then:
+        ipc.size() > 0
+    }
+
+    void "should retrieve ipc previous 5/2014"() {
+        when:
+        def ipc = client.getIPCByPreviousYearAndMonth(2015, 5)
+
+        then:
+        ipc.size() > 0
+    }
+
+    void "should retrieve ipc for 5/2014 6/2015"() {
+        when:
+        def ipc = client.getIPCByPeriodYearAndMonth(2014, 5, 2015, 6)
+
+        then:
+        ipc.size() > 0
+    }
+
+    void "should retrieve ipc for 2013 -2014"() {
+        when:
+        def ipc = client.getIPCPeriodos(2013, 2014)
+
+        then:
+        ipc.size() > 0
     }
 
 
