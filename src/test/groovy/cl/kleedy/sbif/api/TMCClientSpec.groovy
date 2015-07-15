@@ -27,7 +27,7 @@ package cl.kleedy.sbif.api
  */
 class TMCClientSpec extends SBIFClientSpec {
 
-    def client
+    TMCOperations client
 
     void setup() {
         client = sbifTemplate.getTmcOperations()

@@ -27,7 +27,7 @@ package cl.kleedy.sbif.api
  */
 class DolarClientSpec extends SBIFClientSpec {
 
-    def client
+    DolarOperations client
 
     void setup() {
         client = sbifTemplate.getDolarOperations()
