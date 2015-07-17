@@ -44,14 +44,14 @@ class UTMOperationTemplate extends BasicOperations implements UTMOperations {
 
     @Override
     List<UTM> getUTMByYear(int year) {
-        return getUTMByYearAndMonth(year,0)
+        return getUTMByYearAndMonth(year, 0)
     }
 
     @Override
     List<UTM> getUTMByYearAndMonth(int year, int month) {
-        def params = ['year':year]
-        if(month) params.month = month
-        return getResource(params,'utm','getUTMs')
+        def params = ['year': year]
+        if (month) params.month = month
+        return getResource(params, 'utm', 'getUTMs')
     }
 
     @Override
@@ -61,9 +61,33 @@ class UTMOperationTemplate extends BasicOperations implements UTMOperations {
 
     @Override
     List<UTM> getUTMLaterYearAndMonth(int year, int month) {
-        def params = ['year':year]
-        if(month) params.month = month
-        return getResource(params,'utm','/posteriores','getUTMs')
+        def params = ['year': year]
+        if (month) params.month = month
+        return getResource(params, 'utm', '/posteriores', 'getUTMs')
+    }
+
+    @Override
+    List<UTM> getUTMByPreviousYear(int year) {
+        return getUTMByPreviousYearAndMonth(year, 0)
+    }
+
+    @Override
+    List<UTM> getUTMByPreviousYearAndMonth(int year, int month) {
+        def params = ['year': year]
+        if (month) params.month = month
+        return getResource(params, 'utm', '/anteriores', 'getUTMs')
+    }
+
+    @Override
+    List<UTM> getUTMByPeriodYearAndMonth(int year, int month, int year2, int month2) {
+        Map params = ['year': year, 'month': month, 'year2': year2, 'month2': month2]
+        return getResource(params, 'utm', '/periodo', 'getUTMs')
+    }
+
+    @Override
+    List<UTM> getUTMByPeriods(int year, int year2) {
+        Map params = ['year': year, 'year2': year2]
+        return getResource(params, 'utm', '/periodo', 'getUTMs')
     }
 
     /***
@@ -76,12 +100,12 @@ class UTMOperationTemplate extends BasicOperations implements UTMOperations {
         def list = []
         utmList.each() { data ->
             def v = data.Valor.trim()
-            if(v.any{it == ','}) {
+            if (v.any { it == ',' }) {
                 v = v.substring(0, v.indexOf(','))
             }
 
-            v = (v != null && v.length() > 0) ? Double.parseDouble(v.replace(".", '')):0
-            list << new UTM(valor: v,fecha: Date.parse('yyyy-MM-dd', data.Fecha))
+            v = (v != null && v.length() > 0) ? Double.parseDouble(v.replace(".", '')) : 0
+            list << new UTM(valor: v, fecha: Date.parse('yyyy-MM-dd', data.Fecha))
         }
         return list
 

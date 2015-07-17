@@ -52,7 +52,7 @@ class UTMClientSpec extends SBIFClientSpec {
 
     void "should retrieve UTM from specific year 2015 and month 5"() {
         when:
-        def list = client.getUTMByYearAndMonth(2015,5)
+        def list = client.getUTMByYearAndMonth(2015, 5)
 
         then:
         list.size() > 0
@@ -66,8 +66,37 @@ class UTMClientSpec extends SBIFClientSpec {
         list.size() > 0
     }
 
+    void "should retrieve UTM previuos year 2015"() {
+        when:
+        def list = client.getUTMByPreviousYear(2015)
+
+        then:
+        list.size() > 0
+    }
+
+    void "should retrieve UTM previuos year 2013 and month 1"() {
+        when:
+        def list = client.getUTMByPreviousYearAndMonth(2013, 1)
+
+        then:
+        list.size() > 0
+    }
+
+    void "should retrieve UTM from years and months"() {
+        when:
+        def list = client.getUTMByPeriodYearAndMonth(2014, 1, 2015, 1)
+
+        then:
+        list.size() > 0
+    }
 
 
+    void "should retrieve UTM from 2 years"() {
+        when:
+        def list = client.getUTMByPeriods(2014, 2015)
 
+        then:
+        list.size() > 0
+    }
 
 }

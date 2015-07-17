@@ -68,4 +68,41 @@ interface UTMOperations {
      * @return
      */
     def List<UTM> getUTMLaterYearAndMonth(int year, int month);
+
+    /***
+     * Permite obtener un listado con el valor de la UTM de cada mes correspondiente a
+     * las fechas anteriores al año que se indique en los parámetros.
+     * @param year
+     * @return
+     */
+    def List<UTM> getUTMByPreviousYear(int year);
+
+    /***
+     * Permite obtener un listado con el valor de la UTM de cada mes correspondiente a las
+     * fechas anteriores al mes y año que se indique en los parámetros.
+     * @param year
+     * @param month
+     * @return
+     */
+    def List<UTM> getUTMByPreviousYearAndMonth(int year, int month);
+
+    /***
+     * Permite obtener un listado con el valor de la UTM para los meses
+     * incluidos dentro de los parámetros.
+     * @param from year
+     * @param from month
+     * @param to year2
+     * @param to month2
+     * @return
+     */
+    def List<UTM> getUTMByPeriodYearAndMonth(int year, int month, int year2, int month2);
+
+    /***
+     * Permite obtener un listado con el valor de la UTM para cada uno
+     * de los meses incluidos dentro de los años que se indiquen.
+     * @param year from
+     * @param year2 to
+     * @return
+     */
+    def List<UTM> getUTMByPeriods(int year, int year2);
 }
