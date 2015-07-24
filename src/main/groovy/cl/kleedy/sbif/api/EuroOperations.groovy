@@ -21,19 +21,43 @@
  */
 
 package cl.kleedy.sbif.api
+
+import cl.kleedy.sbif.api.indicadores.Euro
+
 /**
- * Operaciones permitidas con SBIF
- * Created by josebovet on 7/14/15.
+ * Created by josebovet on 7/23/15.
  */
-interface SBIF {
+interface EuroOperations {
 
-    DolarOperations dolarOperations();
+    /****
+     * Permite obtener el valor del Euro para el día actual.
+     * @return Euro
+     */
+    def Euro getEuro()
 
-    TMCOperations tmcOperations();
+    /***
+     * Permite obtener un listado con el valor del Euro para cada día del año que se indique.
+     * @param year
+     * @return List<Euro>
+     */
+    def List<Euro> getEuroByYear(int year);
 
-    IPCOperations ipcOperations();
+    /***
+     * Permite obtener un listado con el valor del Euro para cada día y mes del año que se indique.
+     * @param year
+     * @param month
+     * @return List<Euro>
+     */
+    def List<Euro> getEuroByYearAndMonth(int year, int month);
 
-    UTMOperations utmOperations();
+    /***
+     * Permite obtener el valor del Euro para una fecha específica.
+     * @param year
+     * @param month
+     * @param day
+     * @return Euro
+     */
+    def Euro getEuroByYearAndMonthAndDay(int year, int month, int day);
 
-    EuroOperations euroOperations();
 }
+

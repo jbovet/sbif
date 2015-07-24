@@ -20,20 +20,10 @@
  *
  */
 
-package cl.kleedy.sbif.api
+package cl.kleedy.sbif.api.indicadores
+
 /**
- * Operaciones permitidas con SBIF
- * Created by josebovet on 7/14/15.
+ * Created by josebovet on 7/23/15.
  */
-interface SBIF {
-
-    DolarOperations dolarOperations();
-
-    TMCOperations tmcOperations();
-
-    IPCOperations ipcOperations();
-
-    UTMOperations utmOperations();
-
-    EuroOperations euroOperations();
+class Euro extends Indicador {
 }

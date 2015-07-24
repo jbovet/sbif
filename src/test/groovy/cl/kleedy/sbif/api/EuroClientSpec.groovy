@@ -21,19 +21,51 @@
  */
 
 package cl.kleedy.sbif.api
+
 /**
- * Operaciones permitidas con SBIF
- * Created by josebovet on 7/14/15.
+ * Created by josebovet on 7/23/15.
  */
-interface SBIF {
+class EuroClientSpec extends SBIFClientSpec {
 
-    DolarOperations dolarOperations();
+    EuroOperations client
 
-    TMCOperations tmcOperations();
+    void setup() {
+        client = sbifTemplate.getEuroOperations()
+    }
 
-    IPCOperations ipcOperations();
+    void "should retrieve today Euro price"() {
+        when:
+        def euro = client.getEuro()
 
-    UTMOperations utmOperations();
+        then:
+        euro.valor >= 600
+        euro.fecha != null
+    }
 
-    EuroOperations euroOperations();
+    void "should retrieve Euro from specific year 2015"() {
+        when:
+        def list = client.getEuroByYear(2015)
+
+        then:
+        list.size() >= 1
+    }
+
+    void "should retrieve Euro from specific from 5/2015"() {
+        when:
+        def list = client.getEuroByYearAndMonth(2015,5)
+
+        then:
+        list.size() >= 1
+    }
+
+
+    void "should retrieve Euro from specific from 5/5/2015"() {
+        when:
+        def euro = client.getEuroByYearAndMonthAndDay(2015,5,5)
+
+        then:
+        euro.valor >= 500
+    }
+
+
 }
