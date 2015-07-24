@@ -90,6 +90,9 @@ class UTMOperationTemplate extends BasicOperations implements UTMOperations {
         return getResource(params, 'utm', '/periodo', 'getUTMs')
     }
 
+
+
+
     /***
      * Llama al recurso UTM, parseando la respuesta en formato json
      * @param url

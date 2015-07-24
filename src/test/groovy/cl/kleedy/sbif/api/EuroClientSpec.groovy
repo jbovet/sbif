@@ -52,7 +52,7 @@ class EuroClientSpec extends SBIFClientSpec {
 
     void "should retrieve Euro from specific from 5/2015"() {
         when:
-        def list = client.getEuroByYearAndMonth(2015,5)
+        def list = client.getEuroByYearAndMonth(2015, 5)
 
         then:
         list.size() >= 1
@@ -61,7 +61,7 @@ class EuroClientSpec extends SBIFClientSpec {
 
     void "should retrieve Euro from specific from 5/5/2015"() {
         when:
-        def euro = client.getEuroByYearAndMonthAndDay(2015,5,5)
+        def euro = client.getEuroByYearAndMonthAndDay(2015, 5, 5)
 
         then:
         euro.valor >= 500
@@ -77,7 +77,7 @@ class EuroClientSpec extends SBIFClientSpec {
 
     void "should retrieve Euro greater than 2013-05"() {
         when:
-        def list = client.getEuroLaterYearAndMonth(2013,5)
+        def list = client.getEuroLaterYearAndMonth(2013, 5)
 
         then:
         list.size() >= 1
@@ -85,10 +85,57 @@ class EuroClientSpec extends SBIFClientSpec {
 
     void "should retrieve Euro greater than 2013-5-5"() {
         when:
-        def list = client.getEuroLaterYearAndMonthAndDay(2014,5,5)
+        def list = client.getEuroLaterYearAndMonthAndDay(2014, 5, 5)
 
         then:
         list.size() >= 1
     }
 
+    void "should retrieve Euro previous 2015"() {
+        when:
+        def list = client.getEuroByPreviousYear(2015)
+
+        then:
+        list.size() >= 1
+    }
+
+    void "should retrieve Euro previous 2015-5"() {
+        when:
+        def list = client.getEuroByPreviousYearAndMonth(2015, 5)
+
+        then:
+        list.size() >= 1
+    }
+
+    void "should retrieve Euro previous 2015-5-5"() {
+        when:
+        def list = client.getEuroByPreviousYearAndMonthAndDay(2015, 5, 5)
+
+        then:
+        list.size() >= 1
+    }
+
+    void "should retrieve Euro from 2014/2015"() {
+        when:
+        def list = client.getEuroByPeriod(2014,2015)
+
+        then:
+        list.size() >= 1
+    }
+
+    void "should retrieve Euro from 2014/5- 2015/5"() {
+        when:
+        def list = client.getEuroByPeriod(2014,5,2015,5)
+
+        then:
+        list.size() >= 1
+    }
+
+    void "should retrieve Euro from 2014/5/5- 2015/5/5"() {
+        when:
+        def list = client.getEuroByPeriod(2014,5,5,2015,5,5)
+
+        then:
+        list.size() >= 1
+    }
 }

@@ -75,9 +75,52 @@ class EuroOperationTemplate extends BasicOperations implements EuroOperations{
         def params = ['year': year]
         if (month) params.month = month
         if (day) params.day = day
-        return getResource(params, 'euro', 'getEuros')
+        return getResource(params, 'euro','/posteriores' ,'getEuros')
     }
-    
+
+    @Override
+    List<Euro> getEuroByPreviousYear(int year) {
+        return getEuroByPreviousYearAndMonth(year, 0)
+    }
+
+    @Override
+    List<Euro> getEuroByPreviousYearAndMonth(int year, int month) {
+        return getEuroByPreviousYearAndMonthAndDay(year, month,0)
+    }
+
+    @Override
+    List<Euro> getEuroByPreviousYearAndMonthAndDay(int year, int month, int day) {
+        def params = ['year': year]
+        if (month) params.month = month
+        if (day) params.day = day
+        return getResource(params, 'euro','/anteriores','getEuros')
+    }
+
+    @Override
+    @Deprecated
+    List<Euro> getEuroByPeriod(int year, int month, int day, int year2, int month2, int day2) {
+        def params = ['year': year,'year2':year2]
+        if (month && month2) {
+            params.month = month
+            params.month2 = month2
+        }
+//        if (day && day2) {
+//            params.day = day
+//            params.day2 = day2
+//        }
+        return getResource(params, 'euro','/periodo','getEuros')
+    }
+
+    @Override
+    List<Euro> getEuroByPeriod(int year, int month, int year2, int month2) {
+        return getEuroByPeriod(year,month,0,year2,month2,0)
+    }
+
+    @Override
+    List<Euro> getEuroByPeriod(int year, int year2) {
+        return getEuroByPeriod(year,0,year2,0)
+    }
+
     /****
      * Llama al recurso euro, parseando una lista en formato json
      * @param url

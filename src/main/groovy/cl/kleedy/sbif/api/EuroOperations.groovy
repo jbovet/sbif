@@ -25,10 +25,7 @@ package cl.kleedy.sbif.api
 import cl.kleedy.sbif.api.indicadores.Euro
 
 /**
-<<<<<<< HEAD
  *  Operaciones con EURO
-=======
->>>>>>> 13e199e8e5c0f9785d942d44123b2c4e4e37364b
  * Created by josebovet on 7/23/15.
  */
 interface EuroOperations {
@@ -74,7 +71,7 @@ interface EuroOperations {
      * Permite obtener un listado con el valor del Euro para los años y meses siguientes se indique.
      * @param year
      * @param month
-     * @return
+     * @return List<Euro>
      */
     def List<Euro> getEuroLaterYearAndMonth(int year, int month);
 
@@ -83,9 +80,68 @@ interface EuroOperations {
      * @param year
      * @param month
      * @param day
-     * @return
+     * @return List<Euro>
      */
     def List<Euro> getEuroLaterYearAndMonthAndDay(int year, int month, int day);
+
+    /***
+     * Permite obtener un listado con el valor del Euro anteriores al año que indique.
+     * @param year
+     * @return List<Euro>
+     */
+    def List<Euro> getEuroByPreviousYear(int year);
+
+    /***
+     * Permite obtener un listado con el valor del Euro anteriores al año y mes que indique.
+     * @param year
+     * @param month
+     * @return List<Euro>
+     */
+    def List<Euro> getEuroByPreviousYearAndMonth(int year, int month);
+
+    /***
+     * Permite obtener un listado con el valor del Euro anteriores a la fecha que se indique.
+     * @param year
+     * @param month
+     * @param day
+     * @return List<Euro>
+     */
+    def List<Euro> getEuroByPreviousYearAndMonthAndDay(int year, int month, int day);
+
+    /***
+     * @deprecated : Usar por meses.
+     *  Permite obtener un listado con el valor del Euro para las fechas que se
+     *  indiquen, ambas incluidas.
+     * @param year
+     * @param month
+     * @param day
+     * @param year2
+     * @param month2
+     * @param day2
+     * @return List<Euro>
+     *
+     */
+    def List<Euro> getEuroByPeriod(int year, int month, int day, int year2, int month2, int day2);
+
+    /****
+     * Permite obtener un listado con el valor del Euro para cada uno de los días dentro
+     * de los meses y años que se indiquen en los parámetros.
+     * @param year
+     * @param month
+     * @param year2
+     * @param month2
+     * @return
+     */
+    def List<Euro> getEuroByPeriod(int year, int month,int year2, int month2);
+
+    /***
+     * Permite obtener un listado con el valor del Euro para cada uno de los días
+     * incluidos dentro de los años que se indiquen en los parámetros.
+     * @param year
+     * @param year2
+     * @return
+     */
+    def List<Euro> getEuroByPeriod(int year, int year2);
 
 }
 
