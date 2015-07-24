@@ -25,7 +25,10 @@ package cl.kleedy.sbif.api
 import cl.kleedy.sbif.api.indicadores.Euro
 
 /**
+<<<<<<< HEAD
  *  Operaciones con EURO
+=======
+>>>>>>> 13e199e8e5c0f9785d942d44123b2c4e4e37364b
  * Created by josebovet on 7/23/15.
  */
 interface EuroOperations {
@@ -60,6 +63,7 @@ interface EuroOperations {
      */
     def Euro getEuroByYearAndMonthAndDay(int year, int month, int day);
 
+<<<<<<< HEAD
     /***
      * Permite obtener un listado con el valor del Euro para los años siguientes al año que se indique.
      * @param year
@@ -84,5 +88,7 @@ interface EuroOperations {
      */
     def List<Euro> getEuroLaterYearAndMonthAndDay(int year, int month, int day);
 
+=======
+>>>>>>> 13e199e8e5c0f9785d942d44123b2c4e4e37364b
 }
 
