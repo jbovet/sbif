@@ -6,7 +6,7 @@
  * For more details take a look at the Groovy Quickstart chapter in the Gradle
  * user guide available at http://gradle.org/docs/2.4/userguide/tutorial_groovy_projects.html
  */
-
+import java.text.SimpleDateFormat
 
 
 buildscript {
@@ -45,6 +45,28 @@ dependencies {
     testCompile 'junit:junit:4.12'
 }
 
+Date buildTimeAndDate = new Date()
+ext {
+    buildDate = new SimpleDateFormat('dd-MMM-yyyy').format(buildTimeAndDate)
+    buildTime = new SimpleDateFormat('hh:mm aa').format(buildTimeAndDate)
+}
+
+def jarManifestAttributes = [
+        'Built-By'  : System.properties['user.name'],
+        'Created-By': System.properties['java.version'] + ' (' + System.properties['java.vendor'] + ' ' + System.getProperty("java.vm.version") + ")",
+        'Build-Date': buildDate,
+        'Build-Time': buildTime]
+
+jar {
+    manifest {
+        attributes(jarManifestAttributes)
+    }
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
 
 jacocoTestReport {
     reports {
