@@ -1,0 +1,6 @@
+src.main.groovy.cl.kleedy.sbif.api
+src.main.groovy.cl.kleedy.sbif.api.impl
+src.main.groovy.cl.kleedy.sbif.api.indicadores
+src.main.groovy.cl.kleedy.sbif.api.instituciones
+src.main.groovy.cl.kleedy.sbif.api.reportes
+src.test.groovy.cl.kleedy.sbif.api
