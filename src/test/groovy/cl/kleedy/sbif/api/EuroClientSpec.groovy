@@ -67,7 +67,6 @@ class EuroClientSpec extends SBIFClientSpec {
         euro.valor >= 500
     }
 
-<<<<<<< HEAD
     void "should retrieve Euro greater than 2013"() {
         when:
         def list = client.getEuroLaterYear(2013)
@@ -91,10 +90,5 @@ class EuroClientSpec extends SBIFClientSpec {
         then:
         list.size() >= 1
     }
-
-
-
-=======
->>>>>>> 13e199e8e5c0f9785d942d44123b2c4e4e37364b
 
 }

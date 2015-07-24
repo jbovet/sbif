@@ -60,7 +60,6 @@ class EuroOperationTemplate extends BasicOperations implements EuroOperations{
         return getResource(params, 'euro', 'getEuros').first()
     }
 
-<<<<<<< HEAD
     @Override
     List<Euro> getEuroLaterYear(int year) {
         return getEuroLaterYearAndMonth(year,0)
@@ -78,9 +77,7 @@ class EuroOperationTemplate extends BasicOperations implements EuroOperations{
         if (day) params.day = day
         return getResource(params, 'euro', 'getEuros')
     }
-
-=======
->>>>>>> 13e199e8e5c0f9785d942d44123b2c4e4e37364b
+    
     /****
      * Llama al recurso euro, parseando una lista en formato json
      * @param url
