@@ -1,6 +1,7 @@
 package cl.kleedy.sbif.api.impl
 
 import cl.kleedy.sbif.api.BasicOperations
+import cl.kleedy.sbif.api.SBIFClientException
 import cl.kleedy.sbif.api.TMCOperations
 import cl.kleedy.sbif.api.indicadores.TMC
 import wslite.rest.RESTClient
@@ -17,31 +18,31 @@ class TMCOperationTemplate extends BasicOperations implements TMCOperations {
     }
 
     @Override
-    List<TMC> getTMCByYear(int year) {
+    List<TMC> getTMCByYear(int year) throws SBIFClientException {
         Map params = ['year': year]
         return getResource(params, 'tmc', 'getTCM')
     }
 
     @Override
-    List<TMC> getTMCByYearAndMonth(int year, int month) {
+    List<TMC> getTMCByYearAndMonth(int year, int month) throws SBIFClientException {
         Map params = ['year': year, 'month': month]
         return getResource(params, 'tmc', 'getTCM')
     }
 
     @Override
-    List<TMC> getTMCByPreviousYearAndMonth(int year, int month) {
+    List<TMC> getTMCByPreviousYearAndMonth(int year, int month) throws SBIFClientException {
         Map params = ['year': year, 'month': month]
         return getResource(params, 'tmc', '/anteriores', 'getTCM')
     }
 
     @Override
-    List<TMC> getTMCByLaterYearAndMonth(int year, int month) {
+    List<TMC> getTMCByLaterYearAndMonth(int year, int month) throws SBIFClientException {
         Map params = ['year': year, 'month': month]
         return getResource(params, 'tmc', '/posteriores', 'getTCM')
     }
 
     @Override
-    List<TMC> getTMCByPeriodYearAndMonth(int year, int month, int year2, int month2) {
+    List<TMC> getTMCByPeriodYearAndMonth(int year, int month, int year2, int month2) throws SBIFClientException {
         Map params = ['year': year, 'month': month, 'year2': year2, 'month2': month2]
         return getResource(params, 'tmc', '/periodo', 'getTCM')
     }
@@ -51,7 +52,7 @@ class TMCOperationTemplate extends BasicOperations implements TMCOperations {
      * @param url
      * @return List <TMC>
      */
-    private List<TMC> getTCM(String url) {
+    private List<TMC> getTCM(String url) throws SBIFClientException {
         def tcms = call(url).json.TMCs
         def list = []
         tcms.each() { data ->

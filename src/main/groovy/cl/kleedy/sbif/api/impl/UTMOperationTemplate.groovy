@@ -23,6 +23,7 @@
 package cl.kleedy.sbif.api.impl
 
 import cl.kleedy.sbif.api.BasicOperations
+import cl.kleedy.sbif.api.SBIFClientException
 import cl.kleedy.sbif.api.UTMOperations
 import cl.kleedy.sbif.api.indicadores.UTM
 import wslite.rest.RESTClient
@@ -38,67 +39,64 @@ class UTMOperationTemplate extends BasicOperations implements UTMOperations {
     }
 
     @Override
-    UTM getUTM() {
+    UTM getUTM() throws SBIFClientException {
         return getResource([:], 'utm', 'getUTMs').first()
     }
 
     @Override
-    List<UTM> getUTMByYear(int year) {
+    List<UTM> getUTMByYear(int year) throws SBIFClientException {
         return getUTMByYearAndMonth(year, 0)
     }
 
     @Override
-    List<UTM> getUTMByYearAndMonth(int year, int month) {
+    List<UTM> getUTMByYearAndMonth(int year, int month) throws SBIFClientException {
         def params = ['year': year]
         if (month) params.month = month
         return getResource(params, 'utm', 'getUTMs')
     }
 
     @Override
-    List<UTM> getUTMLaterYear(int year) {
+    List<UTM> getUTMLaterYear(int year) throws SBIFClientException {
         return getUTMLaterYearAndMonth(year, 0)
     }
 
     @Override
-    List<UTM> getUTMLaterYearAndMonth(int year, int month) {
+    List<UTM> getUTMLaterYearAndMonth(int year, int month) throws SBIFClientException {
         def params = ['year': year]
         if (month) params.month = month
         return getResource(params, 'utm', '/posteriores', 'getUTMs')
     }
 
     @Override
-    List<UTM> getUTMByPreviousYear(int year) {
+    List<UTM> getUTMByPreviousYear(int year) throws SBIFClientException {
         return getUTMByPreviousYearAndMonth(year, 0)
     }
 
     @Override
-    List<UTM> getUTMByPreviousYearAndMonth(int year, int month) {
+    List<UTM> getUTMByPreviousYearAndMonth(int year, int month) throws SBIFClientException {
         def params = ['year': year]
         if (month) params.month = month
         return getResource(params, 'utm', '/anteriores', 'getUTMs')
     }
 
     @Override
-    List<UTM> getUTMByPeriodYearAndMonth(int year, int month, int year2, int month2) {
+    List<UTM> getUTMByPeriodYearAndMonth(int year, int month, int year2, int month2) throws SBIFClientException {
         Map params = ['year': year, 'month': month, 'year2': year2, 'month2': month2]
         return getResource(params, 'utm', '/periodo', 'getUTMs')
     }
 
     @Override
-    List<UTM> getUTMByPeriods(int year, int year2) {
+    List<UTM> getUTMByPeriods(int year, int year2) throws SBIFClientException {
         Map params = ['year': year, 'year2': year2]
         return getResource(params, 'utm', '/periodo', 'getUTMs')
     }
-
-
-
 
     /***
      * Llama al recurso UTM, parseando la respuesta en formato json
      * @param url
      * @return List <UTM>
      */
-    private List<UTM> getUTMs(String url) {
+    private List<UTM> getUTMs(String url) throws SBIFClientException {
         def utmList = call(url).json.UTMs
         def list = []
         utmList.each() { data ->

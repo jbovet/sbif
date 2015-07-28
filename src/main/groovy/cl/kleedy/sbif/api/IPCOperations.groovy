@@ -34,14 +34,14 @@ interface IPCOperations {
      * Permite obtener el valor de el IPC para el mes actual.
      * @return
      */
-    def IPC getIPC();
+    def IPC getIPC() throws SBIFClientException;
 
     /***
      * Permite obtener un listado con el valor de el IPC para cada mes del año que se indique.
      * @param year
      * @return
      */
-    def List<IPC> getIPCByYear(int year);
+    def List<IPC> getIPCByYear(int year) throws SBIFClientException;
 
     /***
      * Permite obtener un listado con el valor de el IPC de cada mes correspondiente
@@ -49,7 +49,7 @@ interface IPCOperations {
      * @param year
      * @return
      */
-    def List<IPC> getIPCLaterYear(int year);
+    def List<IPC> getIPCLaterYear(int year) throws SBIFClientException;
 
     /***
      * Permite obtener un listado con el valor de el IPC de cada mes correspondiente
@@ -58,7 +58,7 @@ interface IPCOperations {
      * @param month
      * @return
      */
-    def List<IPC> getIPCByLaterYearAndMonth(int year, int month);
+    def List<IPC> getIPCByLaterYearAndMonth(int year, int month) throws SBIFClientException;
 
     /***
      * Permite obtener un listado con el valor de el IPC de cada mes correspondiente
@@ -66,7 +66,7 @@ interface IPCOperations {
      * @param year
      * @return
      */
-    def List<IPC> getIPCByPreviousYear(int year);
+    def List<IPC> getIPCByPreviousYear(int year) throws SBIFClientException;
 
     /***
      * Permite obtener un listado con el valor de el IPC de cada mes correspondiente
@@ -75,7 +75,7 @@ interface IPCOperations {
      * @param month
      * @return
      */
-    def List<IPC> getIPCByPreviousYearAndMonth(int year, int month);
+    def List<IPC> getIPCByPreviousYearAndMonth(int year, int month) throws SBIFClientException;
 
     /***
      * Permite obtener un listado con el valor de el IPC para los meses incluidos dentro de los parámetros
@@ -83,7 +83,7 @@ interface IPCOperations {
      * @param month
      * @return List <IPC>
      */
-    def List<IPC> getIPCByPeriodYearAndMonth(int year, int month, int year2, int month2);
+    def List<IPC> getIPCByPeriodYearAndMonth(int year, int month, int year2, int month2) throws SBIFClientException;
 
     /***
      * Permite obtener un listado con el valor de el IPC para cada uno de los meses incluidos
@@ -92,7 +92,7 @@ interface IPCOperations {
      * @param year2
      * @return
      */
-    def List<IPC> getIPCPeriodos(int year, int year2);
+    def List<IPC> getIPCPeriodos(int year, int year2) throws SBIFClientException;
 
 
 }

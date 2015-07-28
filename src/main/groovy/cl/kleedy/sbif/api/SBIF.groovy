@@ -27,13 +27,13 @@ package cl.kleedy.sbif.api
  */
 interface SBIF {
 
-    DolarOperations dolarOperations();
+    DolarOperations dolarOperations() throws SBIFClientException;
 
-    TMCOperations tmcOperations();
+    TMCOperations tmcOperations() throws SBIFClientException;
 
-    IPCOperations ipcOperations();
+    IPCOperations ipcOperations() throws SBIFClientException;
 
-    UTMOperations utmOperations();
+    UTMOperations utmOperations() throws SBIFClientException;
 
-    EuroOperations euroOperations();
+    EuroOperations euroOperations() throws SBIFClientException;
 }

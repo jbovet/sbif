@@ -33,53 +33,53 @@ interface DolarOperations {
     /***
      * Permite obtener un listado con el valor del Dólar EE.UU. para cada día del año que se indique.
      * @param year
-     * @return List<Dolar>
+     * @return List < Dolar >
      */
-    def List<Dolar> getDolares(int year)
+    def List<Dolar> getDolares(int year) throws SBIFClientException
 
     /***
      * Permite obtener un listado con el valor del Dólar EE.UU. para el actual año
      * @param year
-     * @return List<Dolar>
+     * @return List < Dolar >
      */
-    def List<Dolar> getDolares()
+    def List<Dolar> getDolares() throws SBIFClientException
 
     /***
      * Permite obtener un listado con el valor del Dólar EE.UU. para cada día del mes del año que se indique.
      * @param year
      * @param month
-     * @return List<Dolar>
+     * @return List < Dolar >
      */
-    def List<Dolar> getDolares(int year, int month)
+    def List<Dolar> getDolares(int year, int month) throws SBIFClientException
 
     /***
      * Permite obtener un listado con el valor del Dólar EE.UU. para dia mes y año que se indique.
      * @param year
      * @param month
      * @param day
-     * @return List<Dolar>
+     * @return List < Dolar >
      */
-    def Dolar getDolares(int year, int month, int day)
+    def Dolar getDolares(int year, int month, int day) throws SBIFClientException
 
     /***
      * Permite obtener un listado con el valor del Dólar EE.UU. para los años siguientes al año que se indique.
-     * @return List<Dolar>
+     * @return List < Dolar >
      */
-    def List<Dolar> getDolaresPosteriores(int year)
+    def List<Dolar> getDolaresPosteriores(int year) throws SBIFClientException
 
     /***
      * Permite obtener un listado con el valor del Dólar EE.UU. para cada día del mes del año que se indique.
      * @param year
      * @param month
-     * @return List<Dolar>
+     * @return List < Dolar >
      */
-    def List<Dolar> getDolaresPosteriores(int year, int month)
+    def List<Dolar> getDolaresPosteriores(int year, int month) throws SBIFClientException
 
     /***
      * Permite obtener un listado con el valor del Dólar EE.UU. para los años anteriores al año que se indique.
-     * @return List<Dolar>
+     * @return List < Dolar >
      */
-    def List<Dolar> getDolaresAnteriores(int year)
+    def List<Dolar> getDolaresAnteriores(int year) throws SBIFClientException
 
     /***
      * Permite obtener un listado con el valor del Dólar EE.UU. para mes y año que se indique.
@@ -87,21 +87,21 @@ interface DolarOperations {
      * @param month
      * @return List <Dolar>
      */
-    def List<Dolar> getDolaresAnteriores(int year, int month)
+    def List<Dolar> getDolaresAnteriores(int year, int month) throws SBIFClientException
 
     /***
      * Permite obtener un listado del Dólar EE.UU. para cada uno de los días
      * incluidos dentro de los años que se indiquen en los parámetros.
      * @param year
      * @param year2
-     * @return List<Dolar>
+     * @return List < Dolar >
      */
-    def List<Dolar> getDolaresPeriodo(int year, int year2)
+    def List<Dolar> getDolaresPeriodo(int year, int year2) throws SBIFClientException
 
     /***
      * Permite obtener un el valor del Dólar EE.UU. para el día actual.
      * @return Dolar
      */
-    def Dolar getDolar()
+    def Dolar getDolar() throws SBIFClientException
 }
 

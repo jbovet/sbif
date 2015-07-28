@@ -24,6 +24,7 @@ package cl.kleedy.sbif.api.impl
 
 import cl.kleedy.sbif.api.BasicOperations
 import cl.kleedy.sbif.api.EuroOperations
+import cl.kleedy.sbif.api.SBIFClientException
 import cl.kleedy.sbif.api.indicadores.Euro
 import wslite.rest.RESTClient
 
@@ -31,75 +32,75 @@ import wslite.rest.RESTClient
  * Operaciones con EURO
  * Created by josebovet on 7/23/15.
  */
-class EuroOperationTemplate extends BasicOperations implements EuroOperations{
+class EuroOperationTemplate extends BasicOperations implements EuroOperations {
 
     EuroOperationTemplate(RESTClient restClient, String apiKey) {
         super(restClient, apiKey)
     }
 
     @Override
-    Euro getEuro() {
+    Euro getEuro() throws SBIFClientException {
         return getResource([:], 'euro', 'getEuros').first()
     }
 
     @Override
-    List<Euro> getEuroByYear(int year) {
-        return getEuroByYearAndMonth(year,0)
+    List<Euro> getEuroByYear(int year) throws SBIFClientException {
+        return getEuroByYearAndMonth(year, 0)
     }
 
     @Override
-    List<Euro> getEuroByYearAndMonth(int year, int month) {
+    List<Euro> getEuroByYearAndMonth(int year, int month) throws SBIFClientException {
         def params = ['year': year]
         if (month) params.month = month
         return getResource(params, 'euro', 'getEuros')
     }
 
     @Override
-    Euro getEuroByYearAndMonthAndDay(int year, int month, int day) {
+    Euro getEuroByYearAndMonthAndDay(int year, int month, int day) throws SBIFClientException {
         Map params = ['year': year, 'month': month, 'day': day]
         return getResource(params, 'euro', 'getEuros').first()
     }
 
     @Override
-    List<Euro> getEuroLaterYear(int year) {
-        return getEuroLaterYearAndMonth(year,0)
+    List<Euro> getEuroLaterYear(int year) throws SBIFClientException {
+        return getEuroLaterYearAndMonth(year, 0)
     }
 
     @Override
-    List<Euro> getEuroLaterYearAndMonth(int year, int month) {
-        getEuroLaterYearAndMonthAndDay(year,month,0)
+    List<Euro> getEuroLaterYearAndMonth(int year, int month) throws SBIFClientException {
+        getEuroLaterYearAndMonthAndDay(year, month, 0)
     }
 
     @Override
-    List<Euro> getEuroLaterYearAndMonthAndDay(int year, int month, int day) {
+    List<Euro> getEuroLaterYearAndMonthAndDay(int year, int month, int day) throws SBIFClientException {
         def params = ['year': year]
         if (month) params.month = month
         if (day) params.day = day
-        return getResource(params, 'euro','/posteriores' ,'getEuros')
+        return getResource(params, 'euro', '/posteriores', 'getEuros')
     }
 
     @Override
-    List<Euro> getEuroByPreviousYear(int year) {
+    List<Euro> getEuroByPreviousYear(int year) throws SBIFClientException {
         return getEuroByPreviousYearAndMonth(year, 0)
     }
 
     @Override
-    List<Euro> getEuroByPreviousYearAndMonth(int year, int month) {
-        return getEuroByPreviousYearAndMonthAndDay(year, month,0)
+    List<Euro> getEuroByPreviousYearAndMonth(int year, int month) throws SBIFClientException {
+        return getEuroByPreviousYearAndMonthAndDay(year, month, 0)
     }
 
     @Override
-    List<Euro> getEuroByPreviousYearAndMonthAndDay(int year, int month, int day) {
+    List<Euro> getEuroByPreviousYearAndMonthAndDay(int year, int month, int day) throws SBIFClientException {
         def params = ['year': year]
         if (month) params.month = month
         if (day) params.day = day
-        return getResource(params, 'euro','/anteriores','getEuros')
+        return getResource(params, 'euro', '/anteriores', 'getEuros')
     }
 
     @Override
     @Deprecated
-    List<Euro> getEuroByPeriod(int year, int month, int day, int year2, int month2, int day2) {
-        def params = ['year': year,'year2':year2]
+    List<Euro> getEuroByPeriod(int year, int month, int day, int year2, int month2, int day2) throws SBIFClientException {
+        def params = ['year': year, 'year2': year2]
         if (month && month2) {
             params.month = month
             params.month2 = month2
@@ -108,25 +109,25 @@ class EuroOperationTemplate extends BasicOperations implements EuroOperations{
 //            params.day = day
 //            params.day2 = day2
 //        }
-        return getResource(params, 'euro','/periodo','getEuros')
+        return getResource(params, 'euro', '/periodo', 'getEuros')
     }
 
     @Override
-    List<Euro> getEuroByPeriod(int year, int month, int year2, int month2) {
-        return getEuroByPeriod(year,month,0,year2,month2,0)
+    List<Euro> getEuroByPeriod(int year, int month, int year2, int month2) throws SBIFClientException {
+        return getEuroByPeriod(year, month, 0, year2, month2, 0)
     }
 
     @Override
-    List<Euro> getEuroByPeriod(int year, int year2) {
-        return getEuroByPeriod(year,0,year2,0)
+    List<Euro> getEuroByPeriod(int year, int year2) throws SBIFClientException {
+        return getEuroByPeriod(year, 0, year2, 0)
     }
 
     /****
      * Llama al recurso euro, parseando una lista en formato json
      * @param url
-     * @return List<Euro>
+     * @return List < Euro >
      */
-    private List<Euro> getEuros(String url) {
+    private List<Euro> getEuros(String url) throws SBIFClientException {
         def euros = call(url).json.Euros
         def list = []
         euros.each() { data ->

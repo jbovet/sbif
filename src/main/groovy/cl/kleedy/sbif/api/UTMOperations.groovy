@@ -34,7 +34,7 @@ interface UTMOperations {
      * Permite obtener el valor de la UTM para el mes actual.
      * @return
      */
-    def UTM getUTM();
+    def UTM getUTM() throws SBIFClientException;
 
     /***
      * Permite obtener un listado con el valor de la UTM para
@@ -42,7 +42,7 @@ interface UTMOperations {
      * @param year
      * @return
      */
-    def List<UTM> getUTMByYear(int year);
+    def List<UTM> getUTMByYear(int year) throws SBIFClientException;
 
     /***
      * Permite obtener un listado con el valor de la UTM para el mes y año que se indique
@@ -50,7 +50,7 @@ interface UTMOperations {
      * @param month
      * @return
      */
-    def List<UTM> getUTMByYearAndMonth(int year, int month);
+    def List<UTM> getUTMByYearAndMonth(int year, int month) throws SBIFClientException;
 
     /****
      * Permite obtener un listado con el valor de la UTM de cada mes correspondiente
@@ -58,7 +58,7 @@ interface UTMOperations {
      * @param year
      * @return
      */
-    def List<UTM> getUTMLaterYear(int year);
+    def List<UTM> getUTMLaterYear(int year) throws SBIFClientException;
 
     /****
      * Permite obtener un listado con el valor de la UTM de cada mes correspondiente a
@@ -67,7 +67,7 @@ interface UTMOperations {
      * @param month
      * @return
      */
-    def List<UTM> getUTMLaterYearAndMonth(int year, int month);
+    def List<UTM> getUTMLaterYearAndMonth(int year, int month) throws SBIFClientException;
 
     /***
      * Permite obtener un listado con el valor de la UTM de cada mes correspondiente a
@@ -75,7 +75,7 @@ interface UTMOperations {
      * @param year
      * @return
      */
-    def List<UTM> getUTMByPreviousYear(int year);
+    def List<UTM> getUTMByPreviousYear(int year) throws SBIFClientException;
 
     /***
      * Permite obtener un listado con el valor de la UTM de cada mes correspondiente a las
@@ -84,7 +84,7 @@ interface UTMOperations {
      * @param month
      * @return
      */
-    def List<UTM> getUTMByPreviousYearAndMonth(int year, int month);
+    def List<UTM> getUTMByPreviousYearAndMonth(int year, int month) throws SBIFClientException;
 
     /***
      * Permite obtener un listado con el valor de la UTM para los meses
@@ -95,7 +95,7 @@ interface UTMOperations {
      * @param to month2
      * @return
      */
-    def List<UTM> getUTMByPeriodYearAndMonth(int year, int month, int year2, int month2);
+    def List<UTM> getUTMByPeriodYearAndMonth(int year, int month, int year2, int month2) throws SBIFClientException;
 
     /***
      * Permite obtener un listado con el valor de la UTM para cada uno
@@ -104,5 +104,5 @@ interface UTMOperations {
      * @param year2 to
      * @return
      */
-    def List<UTM> getUTMByPeriods(int year, int year2);
+    def List<UTM> getUTMByPeriods(int year, int year2) throws SBIFClientException;
 }

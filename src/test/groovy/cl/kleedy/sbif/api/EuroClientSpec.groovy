@@ -117,7 +117,7 @@ class EuroClientSpec extends SBIFClientSpec {
 
     void "should retrieve Euro from 2014/2015"() {
         when:
-        def list = client.getEuroByPeriod(2014,2015)
+        def list = client.getEuroByPeriod(2014, 2015)
 
         then:
         list.size() >= 1
@@ -125,7 +125,7 @@ class EuroClientSpec extends SBIFClientSpec {
 
     void "should retrieve Euro from 2014/5- 2015/5"() {
         when:
-        def list = client.getEuroByPeriod(2014,5,2015,5)
+        def list = client.getEuroByPeriod(2014, 5, 2015, 5)
 
         then:
         list.size() >= 1
@@ -133,7 +133,7 @@ class EuroClientSpec extends SBIFClientSpec {
 
     void "should retrieve Euro from 2014/5/5- 2015/5/5"() {
         when:
-        def list = client.getEuroByPeriod(2014,5,5,2015,5,5)
+        def list = client.getEuroByPeriod(2014, 5, 5, 2015, 5, 5)
 
         then:
         list.size() >= 1

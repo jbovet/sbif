@@ -35,7 +35,7 @@ interface TMCOperations {
      * @param year
      * @return List < TMC >
      */
-    def List<TMC> getTMCByYear(int year)
+    def List<TMC> getTMCByYear(int year) throws SBIFClientException
 
     /***
      * Permite obtener un listado con el valor de todos los tipos de TMC para el año  y mes solicitado
@@ -43,7 +43,7 @@ interface TMCOperations {
      * @param month
      * @return List < TMC >
      */
-    def List<TMC> getTMCByYearAndMonth(int year, int month)
+    def List<TMC> getTMCByYearAndMonth(int year, int month) throws SBIFClientException
 
     /***
      * Permite obtener un listado con el valor de todos los tipos de TMC anteriores para el año  y mes solicitado
@@ -51,7 +51,7 @@ interface TMCOperations {
      * @param month
      * @return List < TMC >
      */
-    def List<TMC> getTMCByPreviousYearAndMonth(int year, int month)
+    def List<TMC> getTMCByPreviousYearAndMonth(int year, int month) throws SBIFClientException
 
     /***
      * Permite obtener un listado con el valor de todos los tipos de TMC posteriores para el año  y mes solicitado
@@ -59,7 +59,7 @@ interface TMCOperations {
      * @param month
      * @return List < TMC >
      */
-    def List<TMC> getTMCByLaterYearAndMonth(int year, int month)
+    def List<TMC> getTMCByLaterYearAndMonth(int year, int month) throws SBIFClientException
 
     /***
      * Permite obtener un listado con el valor de todos los tipos de TMC periodo  para los años y meses solicitados
@@ -67,5 +67,5 @@ interface TMCOperations {
      * @param month
      * @return List < TMC >
      */
-    def List<TMC> getTMCByPeriodYearAndMonth(int year, int month, int year2, int month2)
+    def List<TMC> getTMCByPeriodYearAndMonth(int year, int month, int year2, int month2) throws SBIFClientException
 }

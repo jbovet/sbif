@@ -34,22 +34,22 @@ interface EuroOperations {
      * Permite obtener el valor del Euro para el día actual.
      * @return Euro
      */
-    def Euro getEuro()
+    def Euro getEuro() throws SBIFClientException
 
     /***
      * Permite obtener un listado con el valor del Euro para cada día del año que se indique.
      * @param year
-     * @return List<Euro>
+     * @return List < Euro >
      */
-    def List<Euro> getEuroByYear(int year);
+    def List<Euro> getEuroByYear(int year) throws SBIFClientException
 
     /***
      * Permite obtener un listado con el valor del Euro para cada día y mes del año que se indique.
      * @param year
      * @param month
-     * @return List<Euro>
+     * @return List < Euro >
      */
-    def List<Euro> getEuroByYearAndMonth(int year, int month);
+    def List<Euro> getEuroByYearAndMonth(int year, int month) throws SBIFClientException;
 
     /***
      * Permite obtener el valor del Euro para una fecha específica.
@@ -58,7 +58,7 @@ interface EuroOperations {
      * @param day
      * @return Euro
      */
-    def Euro getEuroByYearAndMonthAndDay(int year, int month, int day);
+    def Euro getEuroByYearAndMonthAndDay(int year, int month, int day) throws SBIFClientException;
 
     /***
      * Permite obtener un listado con el valor del Euro para los años siguientes al año que se indique.
@@ -71,42 +71,42 @@ interface EuroOperations {
      * Permite obtener un listado con el valor del Euro para los años y meses siguientes se indique.
      * @param year
      * @param month
-     * @return List<Euro>
+     * @return List < Euro >
      */
-    def List<Euro> getEuroLaterYearAndMonth(int year, int month);
+    def List<Euro> getEuroLaterYearAndMonth(int year, int month) throws SBIFClientException;
 
     /***
      * Permite obtener un listado con el valor del Euro posteriores a la fecha que se indique.
      * @param year
      * @param month
      * @param day
-     * @return List<Euro>
+     * @return List < Euro >
      */
-    def List<Euro> getEuroLaterYearAndMonthAndDay(int year, int month, int day);
+    def List<Euro> getEuroLaterYearAndMonthAndDay(int year, int month, int day) throws SBIFClientException;
 
     /***
      * Permite obtener un listado con el valor del Euro anteriores al año que indique.
      * @param year
-     * @return List<Euro>
+     * @return List < Euro >
      */
-    def List<Euro> getEuroByPreviousYear(int year);
+    def List<Euro> getEuroByPreviousYear(int year) throws SBIFClientException;
 
     /***
      * Permite obtener un listado con el valor del Euro anteriores al año y mes que indique.
      * @param year
      * @param month
-     * @return List<Euro>
+     * @return List < Euro >
      */
-    def List<Euro> getEuroByPreviousYearAndMonth(int year, int month);
+    def List<Euro> getEuroByPreviousYearAndMonth(int year, int month) throws SBIFClientException;
 
     /***
      * Permite obtener un listado con el valor del Euro anteriores a la fecha que se indique.
      * @param year
      * @param month
      * @param day
-     * @return List<Euro>
+     * @return List < Euro >
      */
-    def List<Euro> getEuroByPreviousYearAndMonthAndDay(int year, int month, int day);
+    def List<Euro> getEuroByPreviousYearAndMonthAndDay(int year, int month, int day) throws SBIFClientException;
 
     /***
      * @deprecated : Usar por meses.
@@ -118,10 +118,10 @@ interface EuroOperations {
      * @param year2
      * @param month2
      * @param day2
-     * @return List<Euro>
+     * @return List < Euro >
      *
      */
-    def List<Euro> getEuroByPeriod(int year, int month, int day, int year2, int month2, int day2);
+    def List<Euro> getEuroByPeriod(int year, int month, int day, int year2, int month2, int day2) throws SBIFClientException;
 
     /****
      * Permite obtener un listado con el valor del Euro para cada uno de los días dentro
@@ -132,7 +132,7 @@ interface EuroOperations {
      * @param month2
      * @return
      */
-    def List<Euro> getEuroByPeriod(int year, int month,int year2, int month2);
+    def List<Euro> getEuroByPeriod(int year, int month, int year2, int month2) throws SBIFClientException;
 
     /***
      * Permite obtener un listado con el valor del Euro para cada uno de los días
@@ -141,7 +141,7 @@ interface EuroOperations {
      * @param year2
      * @return
      */
-    def List<Euro> getEuroByPeriod(int year, int year2);
+    def List<Euro> getEuroByPeriod(int year, int year2) throws SBIFClientException;
 
 }
 

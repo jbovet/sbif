@@ -24,6 +24,7 @@ package cl.kleedy.sbif.api.impl
 
 import cl.kleedy.sbif.api.BasicOperations
 import cl.kleedy.sbif.api.IPCOperations
+import cl.kleedy.sbif.api.SBIFClientException
 import cl.kleedy.sbif.api.indicadores.IPC
 import wslite.rest.RESTClient
 
@@ -38,46 +39,46 @@ class IPCOperationTemplate extends BasicOperations implements IPCOperations {
     }
 
     @Override
-    IPC getIPC() {
+    IPC getIPC() throws SBIFClientException {
         return getResource([:], 'ipc', 'getIPCS').first()
     }
 
     @Override
-    List<IPC> getIPCByYear(int year) {
-        return getResource(['year':year],'ipc','getIPCS')
+    List<IPC> getIPCByYear(int year) throws SBIFClientException {
+        return getResource(['year': year], 'ipc', 'getIPCS')
     }
 
     @Override
-    List<IPC> getIPCLaterYear(int year) {
-        return getResource(['year':year],'ipc','/posteriores' ,'getIPCS')
+    List<IPC> getIPCLaterYear(int year) throws SBIFClientException {
+        return getResource(['year': year], 'ipc', '/posteriores', 'getIPCS')
     }
 
     @Override
-    List<IPC> getIPCByLaterYearAndMonth(int year, int month) {
-        return getResource(['year':year, 'month':month],'ipc','/posteriores' ,'getIPCS')
+    List<IPC> getIPCByLaterYearAndMonth(int year, int month) throws SBIFClientException {
+        return getResource(['year': year, 'month': month], 'ipc', '/posteriores', 'getIPCS')
     }
 
     @Override
-    List<IPC> getIPCByPreviousYear(int year) {
-        return getIPCByPreviousYearAndMonth(year,0)
+    List<IPC> getIPCByPreviousYear(int year) throws SBIFClientException {
+        return getIPCByPreviousYearAndMonth(year, 0)
     }
 
     @Override
-    List<IPC> getIPCByPreviousYearAndMonth(int year, int month) {
-        def params = ['year':year]
-        if(month) params.month = month
-        return getResource(params,'ipc','/anteriores' ,'getIPCS')
+    List<IPC> getIPCByPreviousYearAndMonth(int year, int month) throws SBIFClientException {
+        def params = ['year': year]
+        if (month) params.month = month
+        return getResource(params, 'ipc', '/anteriores', 'getIPCS')
     }
 
     @Override
-    List<IPC> getIPCByPeriodYearAndMonth(int year, int month, int year2, int month2) {
+    List<IPC> getIPCByPeriodYearAndMonth(int year, int month, int year2, int month2) throws SBIFClientException {
         Map params = ['year': year, 'month': month, 'year2': year2, 'month2': month2]
         return getResource(params, 'ipc', '/periodo', 'getIPCS')
     }
 
     @Override
-    List<IPC> getIPCPeriodos(int year, int year2) {
-        Map params = ['year': year,'year2': year2]
+    List<IPC> getIPCPeriodos(int year, int year2) throws SBIFClientException {
+        Map params = ['year': year, 'year2': year2]
         return getResource(params, 'ipc', '/periodo', 'getIPCS')
     }
 
@@ -86,7 +87,7 @@ class IPCOperationTemplate extends BasicOperations implements IPCOperations {
      * @param url
      * @return List <IPC>
      */
-    private List<IPC> getIPCS(String url) {
+    private List<IPC> getIPCS(String url) throws SBIFClientException {
         def ipcs = call(url).json.IPCs
         def list = []
         ipcs.each() { data ->

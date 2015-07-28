@@ -24,6 +24,7 @@ package cl.kleedy.sbif.api.impl
 
 import cl.kleedy.sbif.api.BasicOperations
 import cl.kleedy.sbif.api.DolarOperations
+import cl.kleedy.sbif.api.SBIFClientException
 import cl.kleedy.sbif.api.indicadores.Dolar
 import wslite.rest.RESTClient
 
@@ -38,13 +39,13 @@ class DolarOperationTemplate extends BasicOperations implements DolarOperations 
     }
 
     @Override
-    List<Dolar> getDolares(int year) {
+    List<Dolar> getDolares(int year) throws SBIFClientException {
         Map params = ['year': year]
         return getResource(params, "dolar", "getDollars")
     }
 
     @Override
-    List<Dolar> getDolares() {
+    List<Dolar> getDolares() throws SBIFClientException {
         Map params = [:]
         def instance = Calendar.getInstance();
         params << ['year': instance.get(Calendar.YEAR)]
@@ -52,48 +53,48 @@ class DolarOperationTemplate extends BasicOperations implements DolarOperations 
     }
 
     @Override
-    List<Dolar> getDolares(int year, int month) {
+    List<Dolar> getDolares(int year, int month) throws SBIFClientException {
         Map params = ['year': year, 'month': month]
         return getResource(params, 'dolar', 'getDollars')
     }
 
     @Override
-    Dolar getDolares(int year, int month, int day) {
+    Dolar getDolares(int year, int month, int day) throws SBIFClientException {
         Map params = ['year': year, 'month': month, 'day': day]
         return getResource(params, 'dolar', 'getDollars').first()
     }
 
     @Override
-    List<Dolar> getDolaresPosteriores(int year) {
+    List<Dolar> getDolaresPosteriores(int year) throws SBIFClientException {
         return getResource(['year': year], 'dolar', '/posteriores', 'getDollars')
     }
 
     @Override
-    List<Dolar> getDolaresPosteriores(int year, int month) {
+    List<Dolar> getDolaresPosteriores(int year, int month) throws SBIFClientException {
         Map params = ['year': year, 'month': month]
         return getResource(params, 'dolar', '/posteriores', 'getDollars')
     }
 
     @Override
-    List<Dolar> getDolaresAnteriores(int year) {
+    List<Dolar> getDolaresAnteriores(int year) throws SBIFClientException {
         return getResource(['year': year], 'dolar', '/anteriores', 'getDollars')
     }
 
     @Override
-    List<Dolar> getDolaresAnteriores(int year, int month) {
+    List<Dolar> getDolaresAnteriores(int year, int month) throws SBIFClientException {
         Map params = ['year': year, 'month': month]
         return getResource(params, 'dolar', '/anteriores', 'getDollars')
     }
 
     @Override
-    List<Dolar> getDolaresPeriodo(int year, int year2) {
+    List<Dolar> getDolaresPeriodo(int year, int year2) throws SBIFClientException {
         Map params = ['year': year, 'year2': year2]
         return getResource(params, 'dolar', '/periodo', 'getDollars')
 
     }
 
     @Override
-    Dolar getDolar() {
+    Dolar getDolar() throws SBIFClientException {
         def instance = Calendar.getInstance();
         Map params = [:]
         params << ['year': instance.get(Calendar.YEAR)]
@@ -107,7 +108,7 @@ class DolarOperationTemplate extends BasicOperations implements DolarOperations 
      * @param url
      * @return List <Dolar>
      */
-    private List<Dolar> getDollars(String url) {
+    private List<Dolar> getDollars(String url) throws SBIFClientException {
         def dolares = call(url).json.Dolares
         def list = []
         dolares.each() { data ->

@@ -22,7 +22,6 @@
 
 package cl.kleedy.sbif.api
 
-import wslite.http.HTTPClientException
 import wslite.rest.RESTClient
 import wslite.rest.Response
 
@@ -141,8 +140,8 @@ class BasicOperations {
         try {
             query << ['formato': 'json']
             response = restClient.get(path: path, query: query)
-        } catch (HTTPClientException hce) {
-            throw new SBIFClientException("Problems communicating with: $path", hce)
+        } catch (Throwable t) {
+            throw new SBIFClientException("Problems communicating with: $path", t)
         }
         return response
     }

@@ -63,27 +63,27 @@ class SBIFTemplate implements SBIF {
 
 
     @Override
-    DolarOperations dolarOperations() {
+    DolarOperations dolarOperations() throws SBIFClientException {
         return dolarOperations
     }
 
     @Override
-    TMCOperations tmcOperations() {
+    TMCOperations tmcOperations() throws SBIFClientException {
         return tmcOperations
     }
 
     @Override
-    IPCOperations ipcOperations() {
+    IPCOperations ipcOperations() throws SBIFClientException {
         return ipcOperations
     }
 
     @Override
-    UTMOperations utmOperations() {
+    UTMOperations utmOperations() throws SBIFClientException {
         return utmOperations
     }
 
     @Override
-    EuroOperations euroOperations() {
+    EuroOperations euroOperations() throws SBIFClientException {
         return euroOperations
     }
 
@@ -94,7 +94,7 @@ class SBIFTemplate implements SBIF {
         dolarOperations = new DolarOperationTemplate(getRestClient(), getApiKey())
         tmcOperations = new TMCOperationTemplate(getRestClient(), getApiKey())
         ipcOperations = new IPCOperationTemplate(getRestClient(), getApiKey())
-        utmOperations = new UTMOperationTemplate(getRestClient(),getApiKey())
+        utmOperations = new UTMOperationTemplate(getRestClient(), getApiKey())
         euroOperations = new EuroOperationTemplate(getRestClient(), getApiKey())
     }
 

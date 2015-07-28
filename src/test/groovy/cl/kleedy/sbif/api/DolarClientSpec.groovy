@@ -38,11 +38,11 @@ class DolarClientSpec extends SBIFClientSpec {
 
     void "should retrieve date and dolar price"() {
         when:
-        def dolar  = new Dolar(valor:600)//client.getDolar()
+        def dolar = new Dolar(valor: 600)//client.getDolar()
         //dolar.valor = 600
 
         then:
-       // dolar.fecha != null
+        // dolar.fecha != null
         dolar.valor >= 600
     }
 
