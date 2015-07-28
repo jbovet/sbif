@@ -7,7 +7,7 @@ Cliente Java/Groovy para la API de la Superintendencia de Bancos e Instituciones
 
 Prerequisites:
 
-	groovy-all:2.4.3
+	groovy-all:2.4.4
 	groovy-wslite:1.1.2
 
 Installation:
