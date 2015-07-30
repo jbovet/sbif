@@ -5,6 +5,8 @@ Cliente Java/Groovy para la API de la Superintendencia de Bancos e Instituciones
 [![Build Status](https://travis-ci.org/jbovet/sbif.svg?branch=master)](https://travis-ci.org/jbovet/sbif)
 
 
+[![Coverage Status](https://coveralls.io/repos/jbovet/sbif/badge.svg?branch=master&service=github)](https://coveralls.io/github/jbovet/sbif?branch=master)
+
 Prerequisites:
 
 	groovy-all:2.4.4
