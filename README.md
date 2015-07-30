@@ -24,8 +24,10 @@ Usage:
     def apiKey = "API_KEY"
     sbifTemplate = new SBIFTemplate(apiKey);
 
-    IPCOperations ipcOPerarions = sbifTemplate.getIpcOperations()
-
+    IPCOperations ipcOPerations = sbifTemplate.getIpcOperations()
+    IPC ipc = ipcOPerations.getIPC()
+    print ipc.valor
+    print ipc.fecha
     ...
 
  SBIF Operations:
