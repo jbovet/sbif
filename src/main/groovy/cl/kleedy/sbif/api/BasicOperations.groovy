@@ -91,7 +91,7 @@ class BasicOperations {
      * @param includeDay :true
      * @return url
      */
-    private String buildDate(Map params = [:], boolean includeDay = true) {
+    private static String buildDate(Map params = [:], boolean includeDay = true) {
         def url = ''
         def day = '', month = '', year = '', year2 = '', month2 = '', period = ''
         def instance = Calendar.getInstance();

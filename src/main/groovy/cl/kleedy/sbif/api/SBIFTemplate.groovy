@@ -42,6 +42,8 @@ class SBIFTemplate implements SBIF {
 
     EuroOperations euroOperations
 
+    UFOperations ufOperations
+
     RESTClient restClient
 
     String apiKey
@@ -91,26 +93,11 @@ class SBIFTemplate implements SBIF {
      * inicializa las operaciones permitidas con SBIF
      */
     private void initSubApis() {
-        dolarOperations = new DolarOperationTemplate(getRestClient(), getApiKey())
-        tmcOperations = new TMCOperationTemplate(getRestClient(), getApiKey())
-        ipcOperations = new IPCOperationTemplate(getRestClient(), getApiKey())
-        utmOperations = new UTMOperationTemplate(getRestClient(), getApiKey())
-        euroOperations = new EuroOperationTemplate(getRestClient(), getApiKey())
-    }
-
-    /***
-     *
-     * @return RESTClient
-     */
-    RESTClient getRestClient() {
-        return restClient
-    }
-
-    /***
-     *
-     * @return apiKey
-     */
-    String getApiKey() {
-        return apiKey
+        dolarOperations = new DolarOperationTemplate(restClient, apiKey)
+        tmcOperations = new TMCOperationTemplate(restClient, apiKey)
+        ipcOperations = new IPCOperationTemplate(restClient, apiKey)
+        utmOperations = new UTMOperationTemplate(restClient, apiKey)
+        euroOperations = new EuroOperationTemplate(restClient, apiKey)
+        ufOperations = new UFOperationTemplate(restClient, apiKey)
     }
 }

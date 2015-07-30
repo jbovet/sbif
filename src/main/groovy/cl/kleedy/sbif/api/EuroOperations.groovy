@@ -65,7 +65,7 @@ interface EuroOperations {
      * @param year
      * @return <Euro>
      */
-    def List<Euro> getEuroLaterYear(int year);
+    def List<Euro> getEuroLaterYear(int year) throws SBIFClientException;
 
     /***
      * Permite obtener un listado con el valor del Euro para los años y meses siguientes se indique.
