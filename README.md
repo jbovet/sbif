@@ -37,6 +37,7 @@ Usage:
      IPCOperations
      UTMOperations
      EuroOperations
+     UFOperations
 
 Contribute
 ;)
